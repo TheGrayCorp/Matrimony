@@ -1,0 +1,40 @@
+name: Build & Deploy to VPS
+
+on:
+  push:
+    branches: [MymateBackend-main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Build with Maven
+        run: mvn clean install
+
+      - name: Upload JAR to VPS
+        uses: appleboy/scp-action@v0.1.3
+        with:
+          host: ${{ 88.222.215.70 }}
+          username: root
+          key: ${{ Pass@graycorp@24 }}
+          source: "target/*.jar"
+          target: "/home/root/"
+
+      - name: Restart service on VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ 88.222.215.70 }}
+          username: root
+          key: ${{ Pass@graycorp@24 }}
+          script: |
+            systemctl restart mymate.service
