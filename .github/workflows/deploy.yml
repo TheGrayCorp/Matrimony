@@ -2,7 +2,7 @@ name: Build & Deploy to VPS
 
 on:
   push:
-    branches: [MymateBackend-main]
+    branches: [Pirathaban-backend]
 
 jobs:
   deploy:
