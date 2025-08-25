@@ -27,7 +27,7 @@ const ListProfile = () => {
         ))}
       </div>
       <div className="mb-2">
-        <FooterText />
+        <FooterText align="center"/>
       </div>
     </div>
   );

@@ -4,19 +4,16 @@ import { createBrowserRouter } from "react-router-dom";
 import ErrorBoundary from "../components/ui/errorBoundary/ErrorBoundary";
 import LoadingScreen from "../components/ui/loading/LoadingScreen";
 import NotFound from "../pages/error/NotFound";
+import Authentication from "../pages/authentication/Authentication";
 
 const ViewProfile = lazy(() => import("../pages/viewProfile/ViewProfile"));
 const ListProfile = lazy(() => import("../pages/listProfile/ListProfile"));
 
 const router = createBrowserRouter([
-  //   {
-  //     path: "login",
-  //     element: <Login />,
-  //   },
-  //   {
-  //     path: "forgot-password",
-  //     element: <ForgotPassword />,
-  //   },
+  {
+    path: "authentication",
+    element: <Authentication />,
+  },
   {
     path: "/",
     // element: <Layout />,
