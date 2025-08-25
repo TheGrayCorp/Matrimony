@@ -53,7 +53,7 @@ const ViewProfile = () => {
           </div>
         </div>
         <div className="fixed bottom-2 w-full">
-          <FooterText />
+          <FooterText align="center" />
         </div>
       </div>
     </div>

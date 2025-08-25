@@ -1,8 +1,9 @@
 const sizeClasses = {
-  extraSmall: "px-4 py-1 text-xs",
-  small: "px-5 py-2 text-xs",
-  medium: "px-4 py-2 text-sm",
-  large: "px-7 py-3 text-base",
+  extraSmall: "px-4 py-1 text-xs rounded-md",
+  small: "px-5 py-2 text-xs rounded-md",
+  medium: "px-4 py-2 text-sm rounded-md",
+  large: "px-7 py-3 text-base rounded-md",
+  auth: "py-2 text-base rounded-full",
 };
 
 const colorClasses = {
@@ -15,6 +16,7 @@ const colorClasses = {
   gray: "bg-gray-500 hover:bg-gray-400 text-white",
   black: "bg-black hover:bg-gray-800 text-white",
   darkBlue: "bg-darkBlue hover:bg-blue-800 text-white",
+  darkRed: "bg-darkRed hover:bg-darkRed text-white",
 };
 
 const Button = ({
@@ -33,9 +35,9 @@ const Button = ({
       type={type}
       value={value}
       onClick={onClick}
-      className={`rounded-md font-normal shadow-sm transition ${
-        sizeClasses[size]
-      } ${colorClasses[color]} ${
+      className={`font-normal shadow-sm transition ${sizeClasses[size]} ${
+        colorClasses[color]
+      } ${
         disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
       } ${className}`}
       disabled={disabled}
