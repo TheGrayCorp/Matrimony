@@ -1,5 +1,6 @@
 import Button from "../../components/ui/Button";
 import { Heart } from "lucide-react";
+import FooterText from "../../components/ui/footerText/FooterText";
 
 const ProfileFooter = () => {
   return (
@@ -8,7 +9,7 @@ const ProfileFooter = () => {
       <Button
         label="Show Interest"
         size="large"
-        color="goldWhite"
+        color="darkRedBorder"
         Icon={Heart}
         className="w-full"
         onClick={() => alert("Interest shown")}
@@ -19,19 +20,12 @@ const ProfileFooter = () => {
         <Button
           label="Go To MyMate App"
           size="large"
-          color="gold"
+          color="darkRed"
           className="w-full"
           onClick={() => alert("Navigating to MyMate App")}
         />
       </div>
-
-      {/* Footer Info */}
-      <p className="text-xs text-gray-500 my-12">
-        Discover more about your soulmate with the{" "}
-        <span className="text-blue-600 cursor-pointer">MyMate app</span>, explore
-        astrology based matches, and learn about your partner’s interests and
-        preferences.
-      </p>
+      <FooterText align="justify" className="my-12" />
     </div>
   );
 };

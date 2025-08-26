@@ -12,6 +12,7 @@ export default {
         mediumGray: "#7E7E7E",
         black2: "#2E2E2E",
         darkRed: "#800000",
+        darkRedHover: "#840101",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
