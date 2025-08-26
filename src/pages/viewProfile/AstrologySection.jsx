@@ -5,7 +5,7 @@ import RasiChart from "./rasiChart/RasiChart";
 const AstrologySection = ({ astrology }) => {
   return (
     <div className="mt-6">
-      <h2 className="text-lg font-semibold text-lightGold">
+      <h2 className="text-lg font-semibold text-darkRed">
         {astrology.fullName}’s Astrology
       </h2>
       <div className="grid xl:grid-cols-12 lg:grid-cols-1">

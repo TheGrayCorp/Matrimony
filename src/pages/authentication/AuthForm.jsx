@@ -12,24 +12,27 @@ const AuthForm = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
       email: "",
-      username: "",
       password: "",
+      confirmPassword: "",
     },
   });
+  const passwordValue = watch("password");
 
   const onSubmit = (data) => {
     if (isLogin) {
       const loginData = {
-        username: data.username,
+        email: data.email,
         password: data.password,
       };
       console.log("Login data is:", loginData);
     } else {
-      console.log("Signup data is:", data);
+      const { confirmPassword, ...signupData } = data;
+      console.log("Signup data is:", signupData);
     }
     reset();
   };
@@ -46,31 +49,19 @@ const AuthForm = () => {
         <FooterText align="justify" />
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
-        {!isLogin && (
-          <InputField
-            label="Email Address"
-            id="email"
-            type="email"
-            placeholder="Enter your email address"
-            register={register("email", {
-              required: isLogin ? false : "Email is required",
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
-                message: "Please enter a valid email address",
-              },
-            })}
-            error={errors.email}
-          />
-        )}
         <InputField
-          label="User Name"
-          id="username"
-          type="text"
-          placeholder="Enter your user name"
-          register={register("username", {
-            required: "Username is required",
+          label="Email Address"
+          id="email"
+          type="email"
+          placeholder="Enter your email address"
+          register={register("email", {
+            required: isLogin ? false : "Email is required",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+              message: "Please enter a valid email address",
+            },
           })}
-          error={errors.username}
+          error={errors.email}
         />
         <div>
           <InputField
@@ -98,6 +89,20 @@ const AuthForm = () => {
             </div>
           )}
         </div>
+        {!isLogin && (
+          <InputField
+            label="Re-enter Password"
+            id="confirmPassword"
+            type="password"
+            placeholder="Enter your password again"
+            register={register("confirmPassword", {
+              required: "Please confirm your password",
+              validate: (value) =>
+                value === passwordValue || "Passwords do not match",
+            })}
+            error={errors.confirmPassword}
+          />
+        )}
         <Button
           label={isLogin ? "Login" : "Register"}
           size="auth"
