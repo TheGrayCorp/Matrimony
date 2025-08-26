@@ -1,6 +1,5 @@
 const RasiChart = () => {
-  return (
-    // <div className="flex gap-12">
+  return (  
     <div className="flex flex-col sm:flex-row gap-12">
       {/* Repeat this block for two charts side by side */}
       {[1, 2].map((chart, i) => (

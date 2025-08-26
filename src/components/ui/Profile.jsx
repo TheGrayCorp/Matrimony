@@ -1,11 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
-const Profile = ({ imgSrc, userName, onLogout }) => {
+const Profile = ({ imgSrc, userName, userRole, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
-  console.log("Image src", imgSrc, userName);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className="relative">
+    <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-10 h-10 rounded-full border border-gray-200 bg-white overflow-hidden"
@@ -20,10 +34,13 @@ const Profile = ({ imgSrc, userName, onLogout }) => {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border">
-          <div className="px-4 py-2 text-gray-700">{userName}</div>
+        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border z-10">
+          <div className="px-4 py-2 text-gray-500 text-sm">
+            <p>{userName}</p>
+            <p className="text-xs font-medium">{userRole}</p>
+          </div>
           <button
-            className="w-full text-left px-4 py-2 hover:bg-gray-100"
+            className="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 text-darkRed"
             onClick={onLogout}
           >
             Logout

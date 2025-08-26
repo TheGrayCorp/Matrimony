@@ -164,6 +164,7 @@ export const astrologyData = {
 };
 
 export const user = {
-  imgSrc: "https://i.pravatar.cc/150?img=2",
+  imgSrc: "https://i.pravatar.cc/150?img=5",
   userName: "Kekajan",
+  userRole: "Admin",
 };
