@@ -22,18 +22,13 @@ const ViewProfile = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <div>
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow">
         <Topbar profile={user} onLogout={handleLogout} />
-        <div className="grid grid-cols-1 md:grid-cols-12 mt-6 px-28">
+        <div className="grid grid-cols-1 md:grid-cols-12 mt-6 px-6 md:px-12 lg:px-28">
           <div className="md:col-span-3">
             <div className="mx-6 border border-gray-200 rounded-md">
-              <div>
-                <ProfileHeader
-                  coverImage={coverImg}
-                  profileImage={profileImg}
-                />
-              </div>
+              <ProfileHeader coverImage={coverImg} profileImage={profileImg} />
               <ProfileDetails
                 name="Olivia Charlotte"
                 age={28}
@@ -46,21 +41,17 @@ const ViewProfile = () => {
           </div>
           <div className="md:col-span-9">
             <div className="p-4">
-              <div>
-                <AboutSection about={aboutData} />
-              </div>
+              <AboutSection about={aboutData} />
               <div className="mt-20 mb-16">
                 <BioSection bio={bioData} icon={CircleUserRound} />
               </div>
-              <div>
-                <AstrologySection astrology={astrologyData} />
-              </div>
+              <AstrologySection astrology={astrologyData} />
             </div>
           </div>
         </div>
-        <div className="fixed bottom-2 w-full">
-          <FooterText align="center" />
-        </div>
+      </div>
+      <div className="py-4">
+        <FooterText align="center" />
       </div>
     </div>
   );

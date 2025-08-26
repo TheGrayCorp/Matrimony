@@ -13,6 +13,8 @@ export default {
         black2: "#2E2E2E",
         darkRed: "#800000",
         darkRedHover: "#840101",
+        iconColor: "#7E7E7E",
+        text1: "#464646"
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
