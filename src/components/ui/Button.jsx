@@ -3,7 +3,7 @@ const sizeClasses = {
   small: "px-5 py-2 text-xs rounded-md",
   medium: "px-4 py-2 text-sm rounded-md",
   large: "px-7 py-3 text-base rounded-md",
-  auth: "py-2 text-base rounded-full",
+  auth: "px-14 py-2 text-base rounded-full",
 };
 
 const colorClasses = {

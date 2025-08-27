@@ -4,9 +4,18 @@ import InputField from "../../components/ui/InputField";
 import FooterText from "../../components/ui/footerText/FooterText";
 import AuthToggle from "../../components/ui/AuthToggle";
 import Button from "../../components/ui/Button";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../../firebase/firebaseConfig";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [authError, setAuthError] = useState(null);
 
   const {
     register,
@@ -16,6 +25,8 @@ const AuthForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -23,17 +34,52 @@ const AuthForm = () => {
   });
   const passwordValue = watch("password");
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    setLoading(true);
+    setAuthError(null);
+
     if (isLogin) {
-      const loginData = {
-        email: data.email,
-        password: data.password,
-      };
-      console.log("Login data is:", loginData);
+      try {
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          data.email,
+          data.password
+        );
+        console.log("User logged in:", userCredential.user);
+        alert("User logged in successfully");
+        setLoading(false);
+      } catch (error) {
+        setAuthError(error.message);
+        setLoading(false);
+        console.error("Login error:", error);
+      }
     } else {
-      const { confirmPassword, ...signupData } = data;
-      console.log("Signup data is:", signupData);
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          data.email,
+          data.password
+        );
+        console.log("User created:", userCredential.user);
+
+        await updateProfile(userCredential.user, {
+          displayName: `${data.firstName} ${data.lastName}`,
+        });
+
+        await sendEmailVerification(userCredential.user);
+        alert("Verification email sent! Please check your inbox");
+        setLoading(false);
+      } catch (error) {
+        if (error.code === "auth/email-already-in-use") {
+          setAuthError("This email address is already in use.");
+        } else {
+          setAuthError(error.message);
+          setLoading(false);
+        }
+        console.error("Signup error:", error);
+      }
     }
+    setLoading(false);
     reset();
   };
 
@@ -49,6 +95,30 @@ const AuthForm = () => {
         <FooterText align="justify" />
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
+        {!isLogin && (
+          <InputField
+            label="First Name"
+            id="firstName"
+            type="text"
+            placeholder="Enter first name"
+            register={register("firstName", {
+              required: "First name is required",
+            })}
+            error={errors.firstName}
+          />
+        )}
+        {!isLogin && (
+          <InputField
+            label="Last Name"
+            id="lastName"
+            type="text"
+            placeholder="Enter last name"
+            register={register("lastName", {
+              required: "Last name is required",
+            })}
+            error={errors.lastName}
+          />
+        )}
         <InputField
           label="Email Address"
           id="email"
@@ -103,13 +173,16 @@ const AuthForm = () => {
             error={errors.confirmPassword}
           />
         )}
-        <Button
-          label={isLogin ? "Login" : "Register"}
-          size="auth"
-          color="darkRed"
-          type="submit"
-          className="w-full rounded-full"
-        />
+        <div className="flex justify-end">
+          <Button
+            label={isLogin ? "Login" : "Register"}
+            size="auth"
+            color="darkRed"
+            type="submit"
+          />
+        </div>
+        {loading && <p className="text-blue-500">Loading...</p>}
+        {authError && <p className="text-red-500">{authError}</p>}
       </form>
     </div>
   );
