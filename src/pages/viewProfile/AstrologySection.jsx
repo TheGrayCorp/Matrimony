@@ -25,7 +25,12 @@ const AstrologySection = ({ astrology }) => {
       </div>
       <div className="mt-6 md:mt-0">
         <Accordion title="Astrology Chart" Icon={LayoutGrid}>
-          <RasiChart />
+          <RasiChart
+            rasiChartData={astrology.rasi_chart}
+            navamsaChartData={astrology.navamsa_chart}
+            rasiLagna={astrology.rasi_lagna_tamil}
+            navamsaLagna={astrology.navamsa_lagna_tamil}
+          />
         </Accordion>
       </div>
     </div>
