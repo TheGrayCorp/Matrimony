@@ -1,11 +1,10 @@
-const InputField = ({
+const TextareaField = ({
   label,
   id,
-  type = "text",
   placeholder,
   register,
   error,
-  readOnly,
+  rows = 4,
 }) => {
   return (
     <div className="mb-4">
@@ -14,17 +13,16 @@ const InputField = ({
           {label}
         </label>
       )}
-      <input
+      <textarea
         id={id}
-        type={type}
         placeholder={placeholder}
-        readOnly={readOnly}
+        rows={rows}
         {...register}
-        className={`w-full px-4 py-2 border border-darkRed rounded-full focus:outline-none`}
+        className={`w-full px-4 py-2 border border-darkRed rounded-xl focus:outline-none`}
       />
-      {error && <span className="text-darkRed text-xs">{error.message}</span>}
+      {error && <span className="text-darkRed text-sm">{error.message}</span>}
     </div>
   );
 };
 
-export default InputField;
+export default TextareaField;

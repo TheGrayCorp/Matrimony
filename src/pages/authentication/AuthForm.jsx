@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import InputField from "../../components/ui/InputField";
+import InputField from "../../components/ui/Input/InputField";
 import FooterText from "../../components/ui/footerText/FooterText";
 import AuthToggle from "../../components/ui/AuthToggle";
 import Button from "../../components/ui/Button";
