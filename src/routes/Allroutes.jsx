@@ -1,6 +1,5 @@
 import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-// import Layout from "../components/common/layout/layout";
 import ErrorBoundary from "../components/ui/errorBoundary/ErrorBoundary";
 import LoadingScreen from "../components/ui/loading/LoadingScreen";
 import NotFound from "../pages/error/NotFound";
@@ -9,7 +8,7 @@ import Authentication from "../pages/authentication/Authentication";
 const ViewProfile = lazy(() => import("../pages/viewProfile/ViewProfile"));
 const ListProfile = lazy(() => import("../pages/listProfile/ListProfile"));
 const CompleteProfile = lazy(() =>
-  import("../pages/completeProfile/CompleteProfile")
+  import("../pages/completeProfile/cp1/CompleteProfile")
 );
 
 const router = createBrowserRouter([
