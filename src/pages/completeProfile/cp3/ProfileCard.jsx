@@ -1,8 +1,8 @@
-import Button from "../../components/ui/Button";
-import FooterText from "../../components/ui/footerText/FooterText";
+import Button from "../../../components/ui/Button";
+import FooterText from "../../../components/ui/footerText/FooterText";
 import { Camera, Plus } from "lucide-react";
-import coverImg from "../../assets/images/viewProfileCoverImage.png";
-import profileImg from "../../assets/images/viewProfileImage.png";
+import coverImg from "../../../assets/images/viewProfileCoverImage.png";
+import profileImg from "../../../assets/images/viewProfileImage.png";
 
 const ProfileCard = () => {
   return (

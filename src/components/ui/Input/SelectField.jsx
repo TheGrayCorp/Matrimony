@@ -1,43 +1,3 @@
-// import { ChevronDown } from "lucide-react";
-
-// const SelectField = ({ label, id, register, error, options = [] }) => {
-//   return (
-//     <div className="mb-4">
-//       {label && (
-//         <label htmlFor={id} className="block text-sm text-black2 mb-2">
-//           {label}
-//         </label>
-//       )}
-
-//       {/* 2. Add a relative positioning wrapper */}
-//       <div className="relative">
-//         <select
-//           id={id}
-//           {...register}
-//           className={`w-full px-4 py-2 border border-darkRed rounded-full focus:outline-none appearance-none bg-white pr-10`} // 3. Add right padding (pr-10)
-//         >
-//           {options.map((option) => (
-//             <option key={option.value} value={option.value}>
-//               {option.label}
-//             </option>
-//           ))}
-//         </select>
-
-//         {/* 4. Add the absolutely positioned icon */}
-//         <div className="absolute inset-y-0 right-0 flex items-center px-8 pointer-events-none">
-//           <ChevronDown className="h-6 w-6 text-darkRed" />
-//         </div>
-//       </div>
-
-//       {error && <span className="text-darkRed text-sm">{error.message}</span>}
-//     </div>
-//   );
-// };
-
-// export default SelectField;
-
-// src/components/ui/Input/StyledSelect.js
-
 import Select from "react-select";
 
 const SelectField = ({
@@ -45,13 +5,13 @@ const SelectField = ({
   id,
   error,
   options = [],
-  ...props // Pass any other react-select props
+  ...props 
 }) => {
   const customStyles = {
-    // This targets the main container that has the border
+    
     control: (baseStyles, state) => ({
       ...baseStyles,
-      borderColor: state.isFocused ? "#a02a35" : "#8B0000", // Darker red on focus, darkRed otherwise
+      borderColor: state.isFocused ? "#a02a35" : "#8B0000", // Darker red on focus, darkRed otherwis
       borderRadius: "9999px", // full rounded
       padding: "0.1rem", // Adjust vertical padding
       boxShadow: "none", // Remove the default blue glow on focus

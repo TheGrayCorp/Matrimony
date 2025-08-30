@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import InputField from "../../components/ui/Input/InputField";
-import SelectField from "../../components/ui/Input/SelectField";
-import TextareaField from "../../components/ui/Input/TextareaField";
-import Button from "../../components/ui/Button";
+import InputField from "../../../components/ui/Input/InputField";
+import SelectField from "../../../components/ui/Input/SelectField";
+import TextareaField from "../../../components/ui/Input/TextareaField";
+import Button from "../../../components/ui/Button";
 
 const occupationTypeOptions = [
   { value: "government", label: "Government" },
