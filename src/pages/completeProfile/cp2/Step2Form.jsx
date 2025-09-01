@@ -14,6 +14,10 @@ const Step2Form = ({ onSubmit }) => {
 
   return (
     <div className="w-full max-w-md mx-auto flex flex-col items-center mt-16">
+      <p className="text-gray-500 text-sm mb-8 max-w-md mx-auto text-center">
+        You can generate astrology chart with required birth details or you can
+        enter manually
+      </p>
       <SelectionCard
         label="Generate the chart"
         icon={Sparkles}
@@ -40,8 +44,6 @@ const Step2Form = ({ onSubmit }) => {
   );
 };
 
-export default Step2Form;
-
 const OrDivider = () => (
   <div className="flex items-center justify-center my-6 w-full max-w-xs mx-auto">
     <div className="flex-grow h-px bg-darkRed"></div>
@@ -49,3 +51,5 @@ const OrDivider = () => (
     <div className="flex-grow h-px bg-darkRed"></div>
   </div>
 );
+
+export default Step2Form;
