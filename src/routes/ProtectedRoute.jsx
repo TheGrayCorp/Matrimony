@@ -1,18 +1,8 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-const ProtectedRoute = ({ children, requiredRole }) => {
-  const isAuthenticated = !!localStorage.getItem("token");
-  const userRole = localStorage.getItem("role") || "user";
-
-  if (!isAuthenticated) {
-    return <Navigate to="/" replace />;
-  }
-
-  if (requiredRole && userRole !== requiredRole) {
-    return <Navigate to="/" replace />;
-  }
-
-  return children;
+const ProtectedRoute = () => {
+  const token = localStorage.getItem("idToken");
+  return token ? <Outlet /> : <Navigate to="/authentication" replace />;
 };
 
 export default ProtectedRoute;

@@ -2,9 +2,13 @@ import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import ErrorBoundary from "../components/ui/errorBoundary/ErrorBoundary";
 import LoadingScreen from "../components/ui/loading/LoadingScreen";
-import NotFound from "../pages/error/NotFound";
-import Authentication from "../pages/authentication/Authentication";
+import ProtectedRoute from "./ProtectedRoute";
+import PublicRoute from "./PublicRoute";
 
+const Authentication = lazy(() =>
+  import("../pages/authentication/Authentication")
+);
+const NotFound = lazy(() => import("../pages/error/NotFound"));
 const ViewProfile = lazy(() => import("../pages/viewProfile/ViewProfile"));
 const ListProfile = lazy(() => import("../pages/listProfile/ListProfile"));
 const CompleteProfile = lazy(() =>
@@ -13,12 +17,8 @@ const CompleteProfile = lazy(() =>
 
 const router = createBrowserRouter([
   {
-    path: "authentication",
-    element: <Authentication />,
-  },
-  {
     path: "/",
-    // element: <Layout />,
+    element: <ProtectedRoute />,
     errorElement: <ErrorBoundary />,
     children: [
       {
@@ -31,21 +31,47 @@ const router = createBrowserRouter([
       },
       {
         path: "viewprofile/:id",
-        element: <ViewProfile />,
+        element: (
+          <Suspense fallback={<LoadingScreen />}>
+            <ViewProfile />
+          </Suspense>
+        ),
       },
       {
         path: "listprofile",
-        element: <ListProfile />,
+        element: (
+          <Suspense fallback={<LoadingScreen />}>
+            <ListProfile />
+          </Suspense>
+        ),
       },
       {
         path: "completeprofile",
-        element: <CompleteProfile />,
+        element: (
+          <Suspense fallback={<LoadingScreen />}>
+            <CompleteProfile />
+          </Suspense>
+        ),
       },
       {
         path: "*",
         element: (
           <Suspense fallback={<LoadingScreen />}>
             <NotFound />
+          </Suspense>
+        ),
+      },
+    ],
+  },
+  {
+    path: "authentication",
+    element: <PublicRoute />,
+    children: [
+      {
+        index: true,
+        element: (
+          <Suspense fallback={<LoadingScreen />}>
+            <Authentication />
           </Suspense>
         ),
       },

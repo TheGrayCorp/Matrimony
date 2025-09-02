@@ -11,11 +11,13 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [authError, setAuthError] = useState(null);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -45,13 +47,20 @@ const AuthForm = () => {
           data.email,
           data.password
         );
-        console.log("User logged in:", userCredential.user);
-        alert("User logged in successfully");
-        setLoading(false);
+        const user = userCredential.user;
+        console.log("User logged in:", user);
+        const idToken = await user.getIdToken();
+        localStorage.setItem("idToken", idToken);
+        navigate("/completeprofile");
       } catch (error) {
-        setAuthError(error.message);
+        console.error("Caught Firebase Error:", error);
+        if (error.code === "auth/invalid-credential") {
+          setAuthError("Invalid login credentials");
+        } else {
+          setAuthError("Something went wrong. Please try again");
+        }
+      } finally {
         setLoading(false);
-        console.error("Login error:", error);
       }
     } else {
       try {
@@ -68,19 +77,18 @@ const AuthForm = () => {
 
         await sendEmailVerification(userCredential.user);
         alert("Verification email sent! Please check your inbox");
-        setLoading(false);
+        reset();
       } catch (error) {
         if (error.code === "auth/email-already-in-use") {
           setAuthError("This email address is already in use.");
         } else {
           setAuthError(error.message);
-          setLoading(false);
         }
         console.error("Signup error:", error);
+      } finally {
+        setLoading(false);
       }
     }
-    setLoading(false);
-    reset();
   };
 
   return (
