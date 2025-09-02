@@ -1,8 +1,11 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { handleLogout } from "../../lib/logout";
 
-const Profile = ({ imgSrc, userName, userRole, onLogout }) => {
+const Profile = ({ imgSrc, userName, userRole }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -18,6 +21,10 @@ const Profile = ({ imgSrc, userName, userRole, onLogout }) => {
     };
   }, []);
 
+  const onLogout = () => {
+    handleLogout(navigate);
+  };
+
   return (
     <div className="relative" ref={dropdownRef}>
       <button
@@ -32,7 +39,6 @@ const Profile = ({ imgSrc, userName, userRole, onLogout }) => {
           />
         )}
       </button>
-
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border z-10">
           <div className="px-4 py-2 text-gray-500 text-sm">
