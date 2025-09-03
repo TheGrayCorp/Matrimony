@@ -45,7 +45,7 @@ const Step1Form = ({ onSubmit }) => {
         )}
       />
       {errors.gender && (
-        <p className="text-darkRed text-xs text-center -mt-4">
+        <p className="text-darkRed text-sm text-center -mt-4">
           {errors.gender.message}
         </p>
       )}
