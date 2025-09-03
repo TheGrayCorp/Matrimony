@@ -82,7 +82,7 @@ const ManualEntryForm = ({ onSubmit }) => {
       <Controller
         name="natchathiram"
         control={control}
-        rules={{ requirenatchathiramd: "Natchathiram is required" }}
+        rules={{ required: "Natchathiram is required" }}
         render={({ field }) => (
           <SelectField
             label="Natchathiram (Star Sign)"
