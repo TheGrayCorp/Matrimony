@@ -4,7 +4,7 @@ const sizeClasses = {
   medium: "px-4 py-2 text-sm rounded-md",
   large: "px-7 py-3 text-base rounded-md",
   auth: "px-14 py-2 text-base rounded-full",
-  goToApp: "px-14 py-3 text-base rounded-full"
+  goToApp: "px-14 py-3 text-base rounded-full",
 };
 
 const colorClasses = {
