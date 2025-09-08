@@ -9,7 +9,7 @@ const ProfileFooter = () => {
       <Button
         label="Show Interest"
         size="large"
-        color="darkRedBorder"
+        color="purpleBorder"
         Icon={Heart}
         className="w-full"
         onClick={() => alert("Interest shown")}
@@ -20,7 +20,7 @@ const ProfileFooter = () => {
         <Button
           label="Go To MyMate App"
           size="large"
-          color="darkRed"
+          color="purple"
           className="w-full"
           onClick={() => alert("Navigating to MyMate App")}
         />

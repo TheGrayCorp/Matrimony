@@ -102,7 +102,7 @@ const CompleteProfile = () => {
         return (
           <div>
             <p className="text-middleGray font-medium">Enter the details</p>
-            <p className="font-bold text-darkRed text-lg">
+            <p className="font-bold text-purple text-lg">
               to complete your profile
             </p>
           </div>
@@ -112,7 +112,7 @@ const CompleteProfile = () => {
           return (
             <div>
               <p className="text-middleGray font-medium">Enter birth details</p>
-              <p className="font-bold text-darkRed text-lg">
+              <p className="font-bold text-purple text-lg">
                 to calculate Astrology chart
               </p>
             </div>
@@ -120,7 +120,7 @@ const CompleteProfile = () => {
         } else if (step2View === "showChart") {
           return (
             <div>
-              <p className="font-bold text-darkRed">
+              <p className="font-bold text-purple">
                 This is your Rasi, Navamsa chart
               </p>
               <p className="text-sm text-middleGray">
@@ -135,7 +135,7 @@ const CompleteProfile = () => {
           return (
             <div>
               <p className="text-middleGray font-medium">Enter birth details</p>
-              <p className="font-bold text-darkRed text-lg">
+              <p className="font-bold text-purple text-lg">
                 to calculate Astrology chart
               </p>
             </div>
@@ -144,7 +144,7 @@ const CompleteProfile = () => {
           return (
             <div>
               <p className="text-middleGray font-medium">Choose preferred</p>
-              <p className="font-bold text-darkRed text-lg">
+              <p className="font-bold text-purple text-lg">
                 Astrology chart input method
               </p>
               <p className="text-middleGray text-sm">
@@ -158,7 +158,7 @@ const CompleteProfile = () => {
         return (
           <div>
             <p className="text-middleGray">Enter the personal details</p>
-            <p className="font-bold text-darkRed text-lg">
+            <p className="font-bold text-purple text-lg">
               to complete your profile
             </p>
           </div>

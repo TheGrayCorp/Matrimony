@@ -6,7 +6,7 @@ const PlanetButton = ({ planet, isUsed, placementNumber, onClick }) => (
       ${
         isUsed
           ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-          : "bg-darkRed text-white hover:bg-red-900"
+          : "bg-purple text-white hover:bg-red-900"
       }
     `}
   >

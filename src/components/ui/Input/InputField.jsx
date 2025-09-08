@@ -20,9 +20,9 @@ const InputField = ({
         placeholder={placeholder}
         readOnly={readOnly}
         {...register}
-        className={`w-full px-4 py-2 border border-darkRed rounded-full focus:outline-none`}
+        className={`w-full px-4 py-2 border border-purple rounded-full focus:outline-none`}
       />
-      {error && <span className="text-darkRed text-sm">{error.message}</span>}
+      {error && <span className="text-purple text-sm">{error.message}</span>}
     </div>
   );
 };

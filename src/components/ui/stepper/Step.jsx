@@ -4,18 +4,18 @@ const Step = ({ number, status, isLastStep }) => {
   const getStepClasses = () => {
     switch (status) {
       case "completed":
-        return "bg-darkRed text-white";
+        return "bg-purple text-white";
       case "current":
-        return "bg-darkRed text-white";
+        return "bg-purple text-white";
       case "pending":
-        return "border-2 border-darkRed text-darkRed";
+        return "border-2 border-purple text-purple";
       default:
         return "";
     }
   };
 
   const getLineClasses = () => {
-    return status === "completed" ? "bg-darkRed" : "bg-gray-300";
+    return status === "completed" ? "bg-purple" : "bg-gray-300";
   };
 
   return (

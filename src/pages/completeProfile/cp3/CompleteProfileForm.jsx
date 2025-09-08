@@ -170,7 +170,7 @@ const CompleteProfileForm = () => {
         />
       </div>
       <div className="flex justify-end mt-4">
-        <Button label="Complete" size="auth" color="darkRed" type="submit" />
+        <Button label="Complete" size="auth" color="purple" type="submit" />
       </div>
       {loading && <p className="text-blue-400">Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}

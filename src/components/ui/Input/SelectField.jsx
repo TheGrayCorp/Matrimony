@@ -11,7 +11,7 @@ const SelectField = ({
     
     control: (baseStyles, state) => ({
       ...baseStyles,
-      borderColor: state.isFocused ? "#a02a35" : "#8B0000", // Darker red on focus, darkRed otherwis
+      borderColor: state.isFocused ? "#a02a35" : "#8B0000", // Darker red on focus, purple otherwis
       borderRadius: "9999px", // full rounded
       padding: "0.1rem", // Adjust vertical padding
       boxShadow: "none", // Remove the default blue glow on focus
@@ -22,7 +22,7 @@ const SelectField = ({
     // This targets the dropdown arrow icon
     dropdownIndicator: (baseStyles, state) => ({
       ...baseStyles,
-      color: "#8B0000", // Your darkRed icon color
+      color: "#8B0000", // Your purple icon color
       "&:hover": {
         color: "#a02a35", // Darker red on hover
       },
@@ -60,7 +60,7 @@ const SelectField = ({
         options={options}
         {...props}
       />
-      {error && <span className="text-darkRed text-sm">{error.message}</span>}
+      {error && <span className="text-purple text-sm">{error.message}</span>}
     </div>
   );
 };

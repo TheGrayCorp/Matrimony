@@ -72,7 +72,7 @@ const ListProfile = () => {
   }
   if (error) {
     return (
-      <div className="text-center text-darkRed">Failed to load profiles.</div>
+      <div className="text-center text-purple">Failed to load profiles.</div>
     );
   }
   if (isEmpty) {

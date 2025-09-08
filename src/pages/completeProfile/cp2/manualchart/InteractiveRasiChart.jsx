@@ -1,7 +1,7 @@
 const BigSquare = ({ title }) => (
   <div
     style={{ gridRow: "2 / span 2", gridColumn: "2 / span 2" }}
-    className="w-full h-full border border-darkRed rounded-md flex items-center justify-center text-darkRed text-sm font-bold"
+    className="w-full h-full border border-purple rounded-md flex items-center justify-center text-purple text-sm font-bold"
   >
     {title}
   </div>
@@ -11,15 +11,15 @@ const Square = ({ number, planets, isSelected, onClick }) => (
   <button
     onClick={onClick}
     className={`relative w-16 h-16 border rounded-md transition-all duration-200 hover:bg-red-50
-      ${isSelected ? "border-yellow-500 border-4" : "border-darkRed"}
+      ${isSelected ? "border-yellow-500 border-4" : "border-purple"}
     `}
   >
-    <span className="absolute top-1 right-2 text-darkRed text-sm">
+    <span className="absolute top-1 right-2 text-purple text-sm">
       {number}
     </span>
 
     {planets && planets.length > 0 && (
-      <div className="absolute bottom-2 left-2 flex flex-col items-start text-darkRed text-xs font-semibold">
+      <div className="absolute bottom-2 left-2 flex flex-col items-start text-purple text-xs font-semibold">
         {planets.map((p) => (
           <span key={p.id}>{p.name}</span>
         ))}

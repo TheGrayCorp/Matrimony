@@ -1,7 +1,7 @@
 const BioSection = ({ bio, icon: Icon }) => {
   return (
     <div className="mt-6">
-      <h2 className="text-lg font-semibold text-darkRed">
+      <h2 className="text-lg font-semibold text-purple">
         {bio.fullName}’s Bio
       </h2>
       <div className="flex items-center gap-4">

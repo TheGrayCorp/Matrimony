@@ -4,14 +4,14 @@ const AuthToggle = ({ isLogin, setIsLogin }) => {
       <button
         onClick={() => setIsLogin(true)}
         className={`w-1/2 py-2 rounded-full transition-colors duration-300 ease-in-out
-          ${isLogin ? "bg-darkRed text-white" : "text-darkRed"}`}
+          ${isLogin ? "bg-purple text-white" : "text-purple"}`}
       >
         Login
       </button>
       <button
         onClick={() => setIsLogin(false)}
         className={`w-1/2 py-2 rounded-full transition-colors duration-300 ease-in-out
-          ${!isLogin ? "bg-darkRed text-white" : "text-darkRed"}`}
+          ${!isLogin ? "bg-purple text-white" : "text-purple"}`}
       >
         Register
       </button>

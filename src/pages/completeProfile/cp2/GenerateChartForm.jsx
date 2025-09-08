@@ -65,7 +65,7 @@ const GenerateChartForm = ({ onSubmit }) => {
         <Button
           label="Auto Generate my Astrology Chart"
           size="auth"
-          color="darkRed"
+          color="purple"
           type="submit"
         />
       </div>

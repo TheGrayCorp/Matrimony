@@ -154,7 +154,7 @@ const AuthForm = () => {
           <Button
             label={isLogin ? "Login" : "Register"}
             size="auth"
-            color="darkRed"
+            color="purple"
             type="submit"
           />
         </div>
