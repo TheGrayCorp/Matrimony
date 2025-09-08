@@ -10,7 +10,7 @@ import {
 const AboutSection = ({ about }) => {
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-semibold text-darkRed">
+      <h2 className="text-lg font-semibold text-purple">
         About {about.fullName}
       </h2>
       <div className="grid grid-cols-2 gap-4">

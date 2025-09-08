@@ -46,7 +46,7 @@ const Profile = ({ imgSrc, userName, userRole }) => {
             <p className="text-xs font-medium">{userRole}</p>
           </div>
           <button
-            className="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 text-darkRed"
+            className="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 text-purple"
             onClick={onLogout}
           >
             Logout

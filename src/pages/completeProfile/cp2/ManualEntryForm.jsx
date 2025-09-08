@@ -98,7 +98,7 @@ const ManualEntryForm = ({ onSubmit }) => {
         <Button
           label="Add my Astrology Chart manually"
           size="auth"
-          color="darkRed"
+          color="purple"
           type="submit"
         />
       </div>

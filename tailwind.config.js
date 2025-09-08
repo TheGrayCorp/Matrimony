@@ -17,6 +17,7 @@ export default {
         darkRedHover: "#840101",
         iconColor: "#7E7E7E",
         text1: "#464646",
+        purple: "#7D67EE",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],

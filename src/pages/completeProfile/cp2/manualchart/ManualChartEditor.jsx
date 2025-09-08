@@ -119,14 +119,14 @@ const ManualChartEditor = ({ title, onConfirm, onEdit }) => {
             <Button
               label="Edit"
               size="auth"
-              color="darkRedBorder"
+              color="purpleBorder"
               onClick={onEdit}
               className="bg-gray-100"
             />
             <Button
               label="Confirm"
               size="auth"
-              color="darkRed"
+              color="purple"
               onClick={() => onConfirm({ lagnas, placements })}
             />
           </div>

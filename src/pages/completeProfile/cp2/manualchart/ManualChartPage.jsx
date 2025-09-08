@@ -34,7 +34,7 @@ const ManualChartPage = ({ title }) => {
           <div className="flex-grow text-center">
             <p className="text-gray-500">
               Identify the initial number (Lagna/லக்னம்) in your{" "}
-              <span className="font-bold text-darkRed">{title} Chart</span>, and
+              <span className="font-bold text-purple">{title} Chart</span>, and
               select the box.
             </p>
           </div>

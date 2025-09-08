@@ -47,7 +47,7 @@ const Step1Form = ({ onSubmit }) => {
         )}
       />
       {errors.gender && (
-        <p className="text-darkRed text-sm text-center -mt-4">
+        <p className="text-purple text-sm text-center -mt-4">
           {errors.gender.message}
         </p>
       )}
@@ -55,13 +55,13 @@ const Step1Form = ({ onSubmit }) => {
         <Button
           label={isLoading ? "Saving..." : "Next"}
           size="auth"
-          color="darkRed"
+          color="purple"
           type="submit"
           disabled={isLoading}
         />
       </div>
       {apiError && (
-        <p className="text-darkRed text-sm text-center">{apiError}</p>
+        <p className="text-purple text-sm text-center">{apiError}</p>
       )}
     </form>
   );

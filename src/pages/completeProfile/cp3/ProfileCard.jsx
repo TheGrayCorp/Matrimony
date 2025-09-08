@@ -31,7 +31,7 @@ const ProfileCard = () => {
         <Button
           label="Go To MyMate App"
           size="goToApp"
-          color="darkRed"
+          color="purple"
           className="w-full"
         />
         <FooterText align="justify" className="mt-14" />

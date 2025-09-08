@@ -13,7 +13,7 @@ import Accordion from "../../components/ui/accordion/Accordion";
 const AstrologySection = ({ astrology }) => {
   return (
     <div className="mt-6">
-      <h2 className="text-lg font-semibold text-darkRed">
+      <h2 className="text-lg font-semibold text-purple">
         {astrology.fullName}’s Astrology
       </h2>
       <div className="grid grid-cols-2 lg:grid-cols-2 mt-2">

@@ -19,18 +19,18 @@ const GenderSelector = ({ value, onChange }) => {
             onClick={() => onChange(genderValue)}
             className={`flex flex-col items-center justify-center w-24 h-24 border rounded-lg transition-all duration-200 ${
               isSelected
-                ? "border-darkRed bg-red-50"
+                ? "border-purple bg-red-50"
                 : "border-gray-300 bg-white"
             }`}
           >
             <Icon
               className={`w-8 h-8 mb-2 ${
-                isSelected ? "text-darkRed" : "text-gray-500"
+                isSelected ? "text-purple" : "text-gray-500"
               }`}
             />
             <span
               className={`font-medium ${
-                isSelected ? "text-darkRed" : "text-gray-700"
+                isSelected ? "text-purple" : "text-gray-700"
               }`}
             >
               {label}

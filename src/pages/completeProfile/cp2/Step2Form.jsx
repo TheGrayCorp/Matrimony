@@ -35,7 +35,7 @@ const Step2Form = ({ onSubmit }) => {
         <Button
           label="Next"
           size="auth"
-          color="darkRed"
+          color="purple"
           onClick={handleSubmit}
           disabled={!selection}
         />
@@ -46,9 +46,9 @@ const Step2Form = ({ onSubmit }) => {
 
 const OrDivider = () => (
   <div className="flex items-center justify-center my-6 w-full max-w-xs mx-auto">
-    <div className="flex-grow h-px bg-darkRed"></div>
-    <span className="px-4 text-darkRed text-base">or</span>
-    <div className="flex-grow h-px bg-darkRed"></div>
+    <div className="flex-grow h-px bg-purple"></div>
+    <span className="px-4 text-purple text-base">or</span>
+    <div className="flex-grow h-px bg-purple"></div>
   </div>
 );
 

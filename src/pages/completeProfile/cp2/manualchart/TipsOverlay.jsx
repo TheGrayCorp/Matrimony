@@ -28,7 +28,7 @@ const SampleChart = ({ title, hasSelection }) => (
 
 const TipsOverlay = ({ title, onHide }) => {
   return (
-    <div className="absolute -top-80 left-0 w-full bg-darkRed text-white p-6 z-20">
+    <div className="absolute -top-80 left-0 w-full bg-purple text-white p-6 z-20">
       <div className="flex justify-between items-center mt-4">
         <div className="flex items-center gap-2">
           <Sun className="text-yellow-400" />
