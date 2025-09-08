@@ -8,7 +8,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendEmailVerification,
-  updateProfile,
 } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
@@ -27,8 +26,6 @@ const AuthForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      firstName: "",
-      lastName: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -71,10 +68,6 @@ const AuthForm = () => {
         );
         console.log("User created:", userCredential.user);
 
-        await updateProfile(userCredential.user, {
-          displayName: `${data.firstName} ${data.lastName}`,
-        });
-
         await sendEmailVerification(userCredential.user);
         alert("Verification email sent! Please check your inbox");
         reset();
@@ -103,30 +96,6 @@ const AuthForm = () => {
         <FooterText align="justify" />
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
-        {!isLogin && (
-          <InputField
-            label="First Name"
-            id="firstName"
-            type="text"
-            placeholder="Enter first name"
-            register={register("firstName", {
-              required: "First name is required",
-            })}
-            error={errors.firstName}
-          />
-        )}
-        {!isLogin && (
-          <InputField
-            label="Last Name"
-            id="lastName"
-            type="text"
-            placeholder="Enter last name"
-            register={register("lastName", {
-              required: "Last name is required",
-            })}
-            error={errors.lastName}
-          />
-        )}
         <InputField
           label="Email Address"
           id="email"

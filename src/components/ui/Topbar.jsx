@@ -1,6 +1,6 @@
 import Profile from "./Profile";
 
-const Topbar = ({ profile, onLogout }) => {
+const Topbar = ({ profile }) => {
   return (
     <div className="bg-darkRed py-2 sticky top-0 z-10">
       <div className="px-6 flex justify-end">
@@ -8,7 +8,6 @@ const Topbar = ({ profile, onLogout }) => {
           imgSrc={profile.imgSrc}
           userName={profile.userName}
           userRole={profile.userRole}
-          onLogout={onLogout}
         />
       </div>
     </div>

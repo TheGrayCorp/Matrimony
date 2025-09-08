@@ -4,12 +4,15 @@ import "./App.css";
 import ErrorBoundary from "./components/ui/errorBoundary/ErrorBoundary";
 import LoadingScreen from "./components/ui/loading/LoadingScreen";
 import { router } from "./routes/Allroutes";
+import UIStateProvider from "./context/UIStateContext";
 
 function App() {
   return (
-     <ErrorBoundary>
+    <ErrorBoundary>
       <Suspense fallback={<LoadingScreen />}>
-        <RouterProvider router={router} />
+        <UIStateProvider>
+          <RouterProvider router={router} />
+        </UIStateProvider>
       </Suspense>
     </ErrorBoundary>
   );
