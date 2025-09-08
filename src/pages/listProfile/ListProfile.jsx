@@ -88,12 +88,7 @@ const ListProfile = () => {
         ))}
       </div>
       <div ref={bottomRef} style={{ height: "1px" }} />
-      {isLoadingMore && !isReachingEnd() && (
-        // (
-        //   <div className="text-center p-4">Loading more...</div>
-        // )
-        <Spinner />
-      )}
+      {isLoadingMore && !isReachingEnd() && <Spinner />}
       <div className="mb-2">
         <FooterText align="center" />
       </div>

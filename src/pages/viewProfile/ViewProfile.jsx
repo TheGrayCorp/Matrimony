@@ -11,10 +11,11 @@ import coverImg from "../../assets/images/viewProfileCoverImage.png";
 import defaultProfileImg from "../../assets/images/viewProfileImage.png";
 import { CircleUserRound } from "lucide-react";
 import LoadingScreen from "../../components/ui/loading/LoadingScreen";
+import { useParams } from "react-router-dom";
 
 const ViewProfile = () => {
-  const documentId = "4yUTHKC0GR5LpFA6PwQG";
-  const { clientData, isLoading, isError } = useClientData(documentId);
+  const { id } = useParams();
+  const { clientData, isLoading, isError } = useClientData(id);
 
   if (isLoading) {
     return <LoadingScreen />;
