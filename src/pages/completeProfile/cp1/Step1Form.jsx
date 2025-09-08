@@ -2,8 +2,10 @@ import { useForm, Controller } from "react-hook-form";
 import InputField from "../../../components/ui/Input/InputField";
 import Button from "../../../components/ui/Button";
 import GenderSelector from "./GenderSelector";
+import { useUIState } from "../../../context/UIStateContext";
 
 const Step1Form = ({ onSubmit }) => {
+  const { isLoading, apiError } = useUIState();
   const {
     register,
     handleSubmit,
@@ -50,8 +52,17 @@ const Step1Form = ({ onSubmit }) => {
         </p>
       )}
       <div className="flex justify-center">
-        <Button label="Next" size="auth" color="darkRed" type="submit" />
+        <Button
+          label={isLoading ? "Saving..." : "Next"}
+          size="auth"
+          color="darkRed"
+          type="submit"
+          disabled={isLoading}
+        />
       </div>
+      {apiError && (
+        <p className="text-darkRed text-sm text-center">{apiError}</p>
+      )}
     </form>
   );
 };

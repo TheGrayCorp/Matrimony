@@ -6,7 +6,7 @@ const ProfileCard = ({ profile }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/viewprofile/${profile.id}`);
+    navigate(`/viewprofile/${profile?.docId}`);
   };
 
   return (
@@ -14,13 +14,17 @@ const ProfileCard = ({ profile }) => {
       onClick={handleClick}
       className="overflow-hidden cursor-pointer flex flex-col md:flex-row transition-shadow m-6"
     >
-      <ImageCard src={profile.imageUrl} alt={`${profile.name}'s profile`} />
+      <ImageCard
+        src={profile?.profile_pic_url}
+        alt={``}
+        // alt={`${profile?.full_name}'s profile`}
+      />
       <DetailsCard
-        name={profile.name}
-        age={profile.age}
-        profession={profile.profession}
-        location={profile.location}
-        description={profile.description}
+        name={profile?.full_name}
+        age={profile?.age}
+        profession={profile?.occupation}
+        location={profile?.city}
+        description={profile?.bio}
       />
     </div>
   );
