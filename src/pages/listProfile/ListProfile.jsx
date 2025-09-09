@@ -76,7 +76,7 @@ const ListProfile = () => {
     );
   }
   if (isEmpty) {
-    return <div className="text-center text-gray-500">No profiles found.</div>;
+    return <div className="text-center text-purple">No profiles found.</div>;
   }
 
   return (
