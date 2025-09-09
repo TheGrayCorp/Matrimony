@@ -22,7 +22,7 @@ const InputField = ({
         {...register}
         className={`w-full px-4 py-2 border border-purple rounded-full focus:outline-none`}
       />
-      {error && <span className="text-purple text-sm">{error.message}</span>}
+      {error && <span className="text-red-500 text-sm">{error.message}</span>}
     </div>
   );
 };

@@ -12,8 +12,7 @@ import {
 import { auth } from "../../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 
-const AuthForm = () => {
-  const [isLogin, setIsLogin] = useState(true);
+const AuthForm = ({ isLogin, setIsLogin }) => {
   const [loading, setLoading] = useState(false);
   const [authError, setAuthError] = useState(null);
   const navigate = useNavigate();
@@ -30,6 +29,7 @@ const AuthForm = () => {
       password: "",
       confirmPassword: "",
     },
+    mode: "onChange",
   });
   const passwordValue = watch("password");
 
@@ -102,7 +102,7 @@ const AuthForm = () => {
           type="email"
           placeholder="Enter your email address"
           register={register("email", {
-            required: isLogin ? false : "Email is required",
+            required: "Email is required",
             pattern: {
               value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
               message: "Please enter a valid email address",
