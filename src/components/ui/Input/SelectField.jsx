@@ -1,49 +1,39 @@
 import Select from "react-select";
 
-const SelectField = ({
-  label,
-  id,
-  error,
-  options = [],
-  ...props 
-}) => {
+const SelectField = ({ label, id, error, options = [], ...props }) => {
   const customStyles = {
-    
     control: (baseStyles, state) => ({
       ...baseStyles,
-      borderColor: state.isFocused ? "#a02a35" : "#8B0000", // Darker red on focus, purple otherwis
-      borderRadius: "9999px", // full rounded
-      padding: "0.1rem", // Adjust vertical padding
-      boxShadow: "none", // Remove the default blue glow on focus
+      borderColor: state.isFocused ? "#a02a35" : "#8B0000",
+      borderRadius: "9999px",
+      padding: "0.1rem",
+      boxShadow: "none",
       "&:hover": {
-        borderColor: "#a02a35", // Darker red on hover
+        borderColor: "#a02a35",
       },
     }),
-    // This targets the dropdown arrow icon
-    dropdownIndicator: (baseStyles, state) => ({
+    dropdownIndicator: (baseStyles) => ({
       ...baseStyles,
-      color: "#8B0000", // Your purple icon color
+      color: "#8B0000",
       "&:hover": {
-        color: "#a02a35", // Darker red on hover
+        color: "#a02a35",
       },
     }),
-    // This targets the individual options in the dropdown menu
     option: (baseStyles, state) => ({
       ...baseStyles,
       backgroundColor: state.isSelected
-        ? "#8B0000" // Background for selected option
+        ? "#8B0000"
         : state.isFocused
-        ? "#fee2e2" // Background for hovered/focused option
+        ? "#fee2e2"
         : "white",
       color: state.isSelected ? "white" : "#333",
       "&:active": {
         backgroundColor: "#fecaca",
       },
     }),
-    // This targets the placeholder text
     placeholder: (baseStyles) => ({
       ...baseStyles,
-      color: "#9ca3af", // A standard placeholder color
+      color: "#9ca3af",
     }),
   };
 
@@ -54,12 +44,7 @@ const SelectField = ({
           {label}
         </label>
       )}
-      <Select
-        id={id}
-        styles={customStyles} // Apply your custom styles here
-        options={options}
-        {...props}
-      />
+      <Select id={id} styles={customStyles} options={options} {...props} />
       {error && <span className="text-purple text-sm">{error.message}</span>}
     </div>
   );
