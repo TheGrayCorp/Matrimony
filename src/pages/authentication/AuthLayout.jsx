@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import AuthForm from "../authentication/AuthForm";
 import loginImage from "../../assets/images/loginImage.svg";
 import signupImage from "../../assets/images/signupImage.png";
+import PhonenoLogin from "./PhoneLogin/PhonenoLogin";
 
 const AuthLayout = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,7 +24,8 @@ const AuthLayout = () => {
         />
       </div>
       <div className="col-span-12 md:col-span-6 flex items-center justify-center">
-        <AuthForm key={formKey} isLogin={isLogin} setIsLogin={setIsLogin} />
+        {/* <AuthForm key={formKey} isLogin={isLogin} setIsLogin={setIsLogin} /> */}
+        <PhonenoLogin />
       </div>
     </div>
   );

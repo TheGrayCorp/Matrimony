@@ -18,7 +18,8 @@ const colorClasses = {
   black: "bg-black hover:bg-gray-800 text-white",
   darkBlue: "bg-darkBlue hover:bg-blue-800 text-white",
   purple: "bg-purple hover:bg-purpleHover text-white",
-  purpleBorder: "border border-purple text-purple hover:bg-red-50",
+  purpleBorder: "border border-purple text-purple hover:bg-lightPurple",
+  lightPurple: "bg-lightPurple text-purple font-semibold"
 };
 
 const Button = ({
