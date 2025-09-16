@@ -28,7 +28,7 @@ const DetailsCard = ({ name, age, profession, location, description }) => {
         </p>
       </div>
       <a href="#" className="mt-2 text-sm text-black1 flex items-center gap-2">
-        <div className="bg-gold p-1 rounded-md flex-shrink-0">
+        <div className="bg-purple p-1 rounded-md flex-shrink-0">
           <MoveUpRight className="w-4 h-4 text-white font-medium" />
         </div>
         <div className="flex items-baseline min-w-0">

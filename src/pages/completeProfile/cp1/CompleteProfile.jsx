@@ -31,7 +31,6 @@ const CompleteProfile = () => {
     setLoading(true);
     setApiError(null);
 
-    
     const payload = {
       adminRegistration: false,
       docId: docId,
@@ -210,7 +209,7 @@ const CompleteProfile = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col">
       <div className="flex-grow">
         <div>
           <div className="flex justify-end px-4 pt-1 pb-0">
