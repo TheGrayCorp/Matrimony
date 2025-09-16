@@ -10,38 +10,23 @@ const Authentication = lazy(() =>
 );
 const NotFound = lazy(() => import("../pages/error/NotFound"));
 const ViewProfile = lazy(() => import("../pages/viewProfile/ViewProfile"));
-const ListProfile = lazy(() => import("../pages/listProfile/ListProfile"));
 const CompleteProfile = lazy(() =>
   import("../pages/completeProfile/cp1/CompleteProfile")
 );
+const Home = lazy(() => import("../pages/home/Home"));
+const Explore = lazy(() => import("../pages/explore/Explore"));
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ProtectedRoute />,
+    // element: <ProtectedRoute />,
     errorElement: <ErrorBoundary />,
     children: [
       {
         index: true,
         element: (
           <Suspense fallback={<LoadingScreen />}>
-            <ListProfile />
-          </Suspense>
-        ),
-      },
-      {
-        path: "viewprofile/:id",
-        element: (
-          <Suspense fallback={<LoadingScreen />}>
-            <ViewProfile />
-          </Suspense>
-        ),
-      },
-      {
-        path: "listprofile",
-        element: (
-          <Suspense fallback={<LoadingScreen />}>
-            <ListProfile />
+            <Home />
           </Suspense>
         ),
       },
@@ -50,6 +35,30 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<LoadingScreen />}>
             <CompleteProfile />
+          </Suspense>
+        ),
+      },
+      {
+        path: "home",
+        element: (
+          <Suspense fallback={<LoadingScreen />}>
+            <Home />
+          </Suspense>
+        ),
+      },
+      {
+        path: "explore",
+        element: (
+          <Suspense fallback={<LoadingScreen />}>
+            <Explore />
+          </Suspense>
+        ),
+      },
+      {
+        path: "viewprofile/:id",
+        element: (
+          <Suspense fallback={<LoadingScreen />}>
+            <ViewProfile />
           </Suspense>
         ),
       },
@@ -65,7 +74,7 @@ const router = createBrowserRouter([
   },
   {
     path: "authentication",
-    element: <PublicRoute />,
+    // element: <PublicRoute />,
     children: [
       {
         index: true,
