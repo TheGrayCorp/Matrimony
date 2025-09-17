@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import useSWRInfinite from "swr/infinite";
 import ProfileCard from "./profileCard/ProfileCard";
-import { docId, navItems, profiles, user } from "../../mockData/mockData";
+import { docId, navItems, profiles, user } from "../../data/Data";
 import FooterText from "../../components/ui/footerText/FooterText";
 import LoadingScreen from "../../components/ui/loading/LoadingScreen";
 import { fetcher } from "../../lib/fetcher";
@@ -125,31 +125,37 @@ const Explore = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col">
-      <div className="flex-shrink-0">
-        <div>
-          <div className="flex justify-end px-4 pt-1 pb-0">
-            <Profile
-              imgSrc={user.imgSrc}
-              userName={user.userName}
-              onLogout={handleLogout}
-            />
-          </div>
-          <Header />
-        </div>
-        <div className="flex justify-center py-4">
-          <Tabs tabs={TABS} activeTab={activeTab} onTabClick={handleTabClick} />
-        </div>
+    // <div className="h-screen flex flex-col">
+    //   <div className="flex-shrink-0">
+    //     <div>
+    //       <div className="flex justify-end px-4 pt-1 pb-0">
+    //         <Profile
+    //           imgSrc={user.imgSrc}
+    //           userName={user.userName}
+    //           onLogout={handleLogout}
+    //         />
+    //       </div>
+    //       <Header />
+    //     </div>
+    //     <div className="flex justify-center py-4">
+    //       <Tabs tabs={TABS} activeTab={activeTab} onTabClick={handleTabClick} />
+    //     </div>
+    //   </div>
+    //   <div className="flex-1 overflow-y-auto">{renderContent()}</div>
+    //   <div className="flex-shrink-0">
+    //     <div className="z-30 mx-2 md:mx-2 lg:mx-72 xl:md-72">
+    //       <BottomNav items={navItems} />
+    //     </div>
+    //     <div className="py-2 px-10">
+    //       <FooterText align="center" />
+    //     </div>
+    //   </div>
+    // </div>
+    <div>
+      <div className="flex justify-center py-4">
+        <Tabs tabs={TABS} activeTab={activeTab} onTabClick={handleTabClick} />
       </div>
       <div className="flex-1 overflow-y-auto">{renderContent()}</div>
-      <div className="flex-shrink-0">
-        <div className="z-30 mx-2 md:mx-2 lg:mx-72 xl:md-72">
-          <BottomNav items={navItems} />
-        </div>
-        <div className="py-2 px-10">
-          <FooterText align="center" />
-        </div>
-      </div>
     </div>
   );
 };
