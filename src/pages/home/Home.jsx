@@ -5,17 +5,9 @@ import BottomNav from "../../components/common/BottomNav";
 import MatchesFound from "./MatchesFound";
 import ProfileCarousel from "./ProfileCarousel";
 import { handleLogout } from "../../lib/logout";
-import { user, profiles } from "../../mockData/mockData";
-import { Home as HomeIcon, Search, Users, Flame } from "lucide-react";
+import { user, profiles, navItems } from "../../mockData/mockData";
 
 const Home = () => {
-  const navItems = [
-    { to: "/", icon: HomeIcon, label: "Home" },
-    { to: "/explore", icon: Search, label: "Explore" },
-    { to: "/mymates", icon: Users, label: "My Mates" },
-    { to: "/tokens", icon: Flame, label: "Tokens", notificationCount: 78 },
-  ];
-
   return (
     <div className="min-h-screen flex flex-col">
       <div className="bg-white">
@@ -28,7 +20,7 @@ const Home = () => {
         </div>
         <Header />
       </div>
-      <div className="flex-grow pb-24">
+      <div className="flex-grow md:pb-24">
         <MatchesFound count={137} />
         <ProfileCarousel profiles={profiles} />
       </div>
@@ -37,7 +29,7 @@ const Home = () => {
           <BottomNav items={navItems} />
         </div>
       </div>
-      <div className="py-2 px-10">
+      <div className="hidden md:block py-2 px-10">
         <FooterText align="justify" className="md:text-center" />
       </div>
     </div>

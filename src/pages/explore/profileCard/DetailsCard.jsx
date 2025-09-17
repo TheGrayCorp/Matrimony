@@ -2,7 +2,7 @@ import { MoveUpRight } from "lucide-react";
 
 const DetailsCard = ({ name, age, profession, location, description }) => {
   return (
-    <div className="p-4 flex flex-col justify-between h-56 md:w-96 bg-white border border-gray-200 rounded-xl shadow-md">
+    <div className="p-4 flex flex-col justify-between h-56 w-96 bg-white border border-gray-200 rounded-xl shadow-md">
       <div>
         <div className="flex items-baseline gap-1">
           <div className="min-w-0">

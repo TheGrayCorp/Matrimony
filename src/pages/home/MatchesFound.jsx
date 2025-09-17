@@ -3,7 +3,7 @@ import MatchesFoundBg from "../../assets/images/MatchesFoundBg.svg";
 
 const MatchesFound = ({ count }) => {
   return (
-    <div className="flex flex-col items-center my-8">
+    <div className="flex flex-col items-center md:my-8">
       <div className="relative w-72 h-40 flex flex-col items-center justify-center">
         <img
           src={MatchesFoundBg}

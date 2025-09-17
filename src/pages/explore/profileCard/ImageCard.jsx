@@ -3,7 +3,7 @@ const ImageCard = ({ src, alt = "Profile Image" }) => {
     <img
       src={src}
       alt={alt}
-      className="w-full md:w-48 h-48 md:h-56 object-cover rounded-lg "
+      className="w-96 md:w-56 h-48 md:h-56 object-cover rounded-xl"
     />
   );
 };
