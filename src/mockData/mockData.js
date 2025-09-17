@@ -1,3 +1,4 @@
+import { Flame, HomeIcon, Search, Users } from "lucide-react";
 import ListProfileCard from "../assets/images/listProfileCard.svg";
 import ListProfileCard2 from "../assets/images/listProfileCard2.png";
 
@@ -119,3 +120,10 @@ export const user = {
 };
 
 export const docId = "dIlr043dfRbKKLFvhla4";
+
+export const navItems = [
+    { to: "/", icon: HomeIcon, label: "Home" },
+    { to: "/explore", icon: Search, label: "Explore" },
+    { to: "/mymates", icon: Users, label: "My Mates" },
+    { to: "/tokens", icon: Flame, label: "Tokens", notificationCount: 78 },
+  ];
