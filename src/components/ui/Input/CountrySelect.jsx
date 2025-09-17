@@ -62,7 +62,7 @@ const CountrySelect = ({ label, id, error, field }) => {
         options={countryOptions}
         {...field}
         value={field.value}
-        styles={underlineSelectStyles}
+        // styles={underlineSelectStyles}
         placeholder="Select a country"
         formatOptionLabel={formatOptionLabel}
       />

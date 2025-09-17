@@ -26,8 +26,8 @@ const NavItem = ({ to, icon: Icon, label, notificationCount }) => {
 
 const BottomNav = ({ items }) => {
   return (
-    <div className="rounded-lg border shadow-lg py-2">
-      <div className="flex items-center justify-around md:justify-center gap-4 md:gap-12">
+    <div className="rounded-lg border shadow-lg py-2 bg-gray-50">
+      <div className="flex items-center justify-around md:justify-center gap-4 md:gap-40">
         {items.map((item) => (
           <NavItem
             key={item.to}
