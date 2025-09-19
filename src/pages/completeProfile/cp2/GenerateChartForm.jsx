@@ -1,13 +1,7 @@
 import { useForm, Controller } from "react-hook-form";
-import SelectField from "../../../components/ui/Input/SelectField";
 import InputField from "../../../components/ui/Input/InputField";
 import Button from "../../../components/ui/Button";
-
-const placeOfBirthOptions = [
-  { value: "colombo", label: "Colombo, Sri Lanka" },
-  { value: "jaffna", label: "Jaffna, Sri Lanka" },
-  { value: "chennai", label: "Chennai, India" },
-];
+import AsyncCitySelect from "../../../components/ui/Input/AsyncCitySelect";
 
 const GenerateChartForm = ({ onSubmit }) => {
   const {
@@ -17,15 +11,23 @@ const GenerateChartForm = ({ onSubmit }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      placeOfBirth: "",
+      placeOfBirth: null,
       dateOfBirth: "",
       timeOfBirth: "",
     },
   });
 
+  const handleFormSubmit = (data) => {
+    const formattedData = {
+      ...data,
+      placeOfBirth: data.placeOfBirth.value,
+    };
+    onSubmit(formattedData);
+  };
+
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       className="w-full max-w-md mx-auto space-y-8"
     >
       <Controller
@@ -33,12 +35,11 @@ const GenerateChartForm = ({ onSubmit }) => {
         control={control}
         rules={{ required: "Place of birth is required" }}
         render={({ field }) => (
-          <SelectField
+          <AsyncCitySelect
             label="Place Of Birth"
             id="placeOfBirth"
-            options={placeOfBirthOptions}
             error={errors.placeOfBirth}
-            placeholder="Select a place"
+            placeholder="Start typing to search for a city"
             {...field}
           />
         )}
