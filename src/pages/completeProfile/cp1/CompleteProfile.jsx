@@ -47,7 +47,7 @@ const CompleteProfile = () => {
     };
     try {
       const response = await saveUserData(payload);
-      console.log("Step 1 data:", response.data);
+      console.log("Step 1 data:", response);
       goTo({ step: "2", view: "choice" });
     } catch (error) {
       console.error("API Error:", error);
@@ -55,8 +55,6 @@ const CompleteProfile = () => {
     } finally {
       setLoading(false);
     }
-    console.log("Step 1 Data:", data);
-    goTo({ step: "2", view: "choice" });
   };
 
   const handleStep2ChoiceSubmit = (selection) => {

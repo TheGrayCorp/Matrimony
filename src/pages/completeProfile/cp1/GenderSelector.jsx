@@ -19,7 +19,7 @@ const GenderSelector = ({ value, onChange }) => {
             onClick={() => onChange(genderValue)}
             className={`flex flex-col items-center justify-center w-24 h-24 border rounded-lg transition-all duration-200 ${
               isSelected
-                ? "border-purple bg-red-50"
+                ? "border-purple bg-lightPurple"
                 : "border-gray-300 bg-white"
             }`}
           >
