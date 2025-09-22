@@ -42,7 +42,6 @@ const TipsOverlay = ({ title, onHide }) => {
           Skip
         </button>
       </div>
-
       <div className="flex-grow flex flex-col md:flex-row items-center justify-around text-center gap-4">
         <div>
           TipsSection
