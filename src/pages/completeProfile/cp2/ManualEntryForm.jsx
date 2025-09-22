@@ -1,20 +1,17 @@
+import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import SelectField from "../../../components/ui/Input/SelectField";
 import InputField from "../../../components/ui/Input/InputField";
 import Button from "../../../components/ui/Button";
 import { rasiOptions, starOptions } from "../../../rasiStarData/RasiStarData";
+import AsyncCitySelect from "../../../components/ui/Input/AsyncCitySelect";
 
-const placeOfBirthOptions = [
-  { value: "colombo", label: "Colombo, Sri Lanka" },
-  { value: "jaffna", label: "Jaffna, Sri Lanka" },
-  { value: "chennai", label: "Chennai, India" },
-];
-
-const ManualEntryForm = ({ onSubmit }) => {
+const ManualEntryForm = ({ onSubmit, existingData }) => {
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -26,6 +23,27 @@ const ManualEntryForm = ({ onSubmit }) => {
     },
   });
 
+  useEffect(() => {
+    if (existingData) {
+      const placeOfBirthOption = {
+        value: existingData.birth_location,
+        label: existingData.birth_location,
+      };
+      const rasiOption = rasiOptions.find((o) => o.value === existingData.rasi);
+      const natchathiramOption = starOptions.find(
+        (o) => o.value === existingData.natchathiram
+      );
+
+      reset({
+        placeOfBirth: placeOfBirthOption,
+        dateOfBirth: existingData.dob,
+        timeOfBirth: existingData.dot,
+        rasi: rasiOption,
+        natchathiram: natchathiramOption,
+      });
+    }
+  }, [existingData, reset]);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -36,12 +54,11 @@ const ManualEntryForm = ({ onSubmit }) => {
         control={control}
         rules={{ required: "Place of birth is required" }}
         render={({ field }) => (
-          <SelectField
+          <AsyncCitySelect
             label="Place Of Birth"
             id="placeOfBirth"
-            options={placeOfBirthOptions}
             error={errors.placeOfBirth}
-            placeholder="Select a place"
+            placeholder="Start typing to search for a city"
             {...field}
           />
         )}

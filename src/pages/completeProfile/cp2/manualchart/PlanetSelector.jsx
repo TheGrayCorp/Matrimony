@@ -5,8 +5,8 @@ const PlanetButton = ({ planet, isUsed, placementNumber, onClick }) => (
     className={`relative w-24 h-16 flex flex-col items-center justify-center rounded-lg transition-all duration-200
       ${
         isUsed
-          ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-          : "bg-purple text-white hover:bg-red-900"
+          ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+          : "bg-purple text-white hover:text-black hover:bg-lightPurple"
       }
     `}
   >

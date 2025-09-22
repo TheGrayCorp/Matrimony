@@ -10,7 +10,7 @@ const SelectField = ({ label, id, error, options = [], ...props }) => {
         </label>
       )}
       <Select id={id} styles={customStyles} options={options} {...props} />
-      {error && <span className="text-purple text-sm">{error.message}</span>}
+      {error && <span className="text-red-500 text-sm">{error.message}</span>}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, forwardRef, useImperativeHandle } from "react";
 import { Lightbulb } from "lucide-react";
 import InteractiveRasiChart from "./InteractiveRasiChart";
 import PlanetSelector from "./PlanetSelector";
@@ -6,12 +6,21 @@ import TipsOverlay from "./TipsOverlay";
 import Button from "../../../../components/ui/Button";
 import { PLANETS } from "../../../../rasiStarData/RasiStarData";
 
-const ManualChartEditor = ({ title, onConfirm, onEdit }) => {
+const ManualChartEditor = ({ title, onConfirm, onEdit }, ref) => {
   const [showTips, setShowTips] = useState(true);
   const [lagnas, setLagnas] = useState(Array(12).fill(null));
   const [selectedBoxIndex, setSelectedBoxIndex] = useState(null);
-
   const [placements, setPlacements] = useState({});
+
+  const resetPlanets = () => {
+    console.log("Resetting planets only...");
+    setPlacements({});
+    setSelectedBoxIndex(null);
+  };
+
+  useImperativeHandle(ref, () => ({
+    resetPlanets,
+  }));
 
   const handleBoxClick = (clickedIndex) => {
     const isNumbered = lagnas[0] !== null;
