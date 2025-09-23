@@ -54,3 +54,18 @@ export const PLANETS = [
   { id: "rahu", name: "Rahu", tamil: "ராகு" },
   { id: "ketu", name: "Ketu", tamil: "கேது" },
 ];
+
+export const RASI_BOX_MAP = [
+  "Aries",
+  "Taurus",
+  "Gemini",
+  "Cancer",
+  "Leo",
+  "Virgo",
+  "Libra",
+  "Scorpio",
+  "Sagittarius",
+  "Capricorn",
+  "Aquarius",
+  "Pisces",
+];

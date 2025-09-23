@@ -127,3 +127,16 @@ export const navItems = [
   { to: "/mymates", icon: Heart, label: "My Mates" },
   { to: "/tokens", icon: Flame, label: "Tokens", notificationCount: 78 },
 ];
+
+export const occupationTypeOptions = [
+  { value: "government", label: "Government" },
+  { value: "private", label: "Private" },
+  { value: "selfemployed", label: "Self Employed" },
+  { value: "unemployed", label: "Un Employed" },
+];
+
+export const maritalStatusOptions = [
+  { value: "unmarried", label: "Unmarried" },
+  { value: "divorced", label: "Divorced" },
+  { value: "widowed", label: "Widowed" },
+];

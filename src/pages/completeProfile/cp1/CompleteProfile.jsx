@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Stepper from "../../../components/ui/stepper/Stepper";
 import Step1Form from "./Step1Form";
@@ -16,13 +16,15 @@ import {
 import { docId } from "../../../data/Data";
 import { useUserProfile } from "../../../hooks/swr/useUserProfile";
 import Spinner from "../../../components/ui/spinner/spinner";
+import { RASI_BOX_MAP } from "../../../rasiStarData/RasiStarData";
 
 const CompleteProfile = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentStep = parseInt(searchParams.get("step")) || 1;
   const step2View = searchParams.get("view") || "choice";
   const totalSteps = 3;
-  // const [editorKey, setEditorKey] = useState(0);
+  const [editorKey, setEditorKey] = useState(0);
+  // const [chartResetCounter, setChartResetCounter] = useState(0);
   const { setLoading, setApiError } = useUIState();
   const {
     profile,
@@ -31,7 +33,15 @@ const CompleteProfile = () => {
     isError,
     mutate,
   } = useUserProfile(docId);
-  const chartEditorRef = useRef(null);
+  const [currentChartType, setCurrentChartType] = useState("rasi");
+  const [rasiChartData, setRasiChartData] = useState(null);
+
+  useEffect(() => {
+    if (currentStep !== 2) {
+      setCurrentChartType("rasi");
+      setRasiChartData(null);
+    }
+  }, [currentStep]);
 
   useEffect(() => {
     if (currentStep === 2 && step2View === "manualform") {
@@ -82,16 +92,106 @@ const CompleteProfile = () => {
     goTo({ step: "2", view: "showChart" });
   };
 
-  const handleChartConfirm = () => {
-    console.log("Chart Confirmed");
-    goTo({ step: "3" });
+  // const handleChartConfirm = async (chartData) => {
+  //   console.log("Chart Confirmed. Raw Data:", chartData);
+  //   setLoading(true);
+  //   setApiError(null);
+
+  //   try {
+  //     const rasiChartPayload = {};
+  //     for (let i = 0; i < 12; i++) {
+  //       const key = `place${i + 1}`;
+  //       const planetsInBox = chartData.placements[i];
+  //       rasiChartPayload[key] = planetsInBox
+  //         ? planetsInBox.map((p) => p.name)
+  //         : [];
+  //     }
+  //     const lagnaIndex = chartData.lagnas.indexOf("01");
+  //     const rasiLagnaName = lagnaIndex !== -1 ? RASI_BOX_MAP[lagnaIndex] : null;
+  //     const payload = {
+  //       docId: docId,
+  //       astrology: {
+  //         rasi_chart: rasiChartPayload,
+  //         rasi_lagna: rasiLagnaName,
+  //       },
+  //     };
+  //     console.log("Final Payload to be sent:", payload);
+  //     const response = await updateUserData(payload);
+  //     console.log("Chart data updated successfully!", response);
+  //     goTo({ step: "3" });
+  //   } catch (error) {
+  //     console.error("API Error updating chart:", error);
+  //     setApiError("Failed to save your chart. Please try again.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  const handleChartConfirm = async (submittedChartData) => {
+    if (currentChartType === "rasi") {
+      console.log("Rasi Chart data received:", submittedChartData);
+      setRasiChartData(submittedChartData);
+      setCurrentChartType("navamsa");
+      setEditorKey((prevKey) => prevKey + 1);
+      return;
+    }
+    if (currentChartType === "navamsa") {
+      console.log("Navamsa Chart data received:", submittedChartData);
+      setLoading(true);
+      setApiError(null);
+
+      try {
+        const rasiChartPayload = {};
+        for (let i = 0; i < 12; i++) {
+          const key = `place${i + 1}`;
+          const planetsInBox = rasiChartData.placements[i];
+          rasiChartPayload[key] = planetsInBox
+            ? planetsInBox.map((p) => p.name)
+            : [];
+        }
+        const rasiLagnaIndex = rasiChartData.lagnas.indexOf("01");
+        const rasiLagnaName =
+          rasiLagnaIndex !== -1 ? RASI_BOX_MAP[rasiLagnaIndex] : null;
+
+        const navamsaChartPayload = {};
+        for (let i = 0; i < 12; i++) {
+          const key = `place${i + 1}`;
+          const planetsInBox = submittedChartData.placements[i];
+          navamsaChartPayload[key] = planetsInBox
+            ? planetsInBox.map((p) => p.name)
+            : [];
+        }
+        const navamsaLagnaIndex = submittedChartData.lagnas.indexOf("01");
+        const navamsaLagnaName =
+          navamsaLagnaIndex !== -1 ? RASI_BOX_MAP[navamsaLagnaIndex] : null;
+
+        const payload = {
+          docId: docId,
+          astrology: {
+            rasi_chart: rasiChartPayload,
+            rasi_lagna: rasiLagnaName,
+            navamsa_chart: navamsaChartPayload,
+            navamsa_lagna: navamsaLagnaName,
+          },
+        };
+        console.log("Final Combined Payload to be sent:", payload);
+        const response = await updateUserData(payload);
+        console.log("Both charts updated successfully!", response);
+        // goTo({ step: "title={currentChartType === 'rasi' ? 'Rasi' : 'Navamsa'}3" });
+        goTo({ step: "3" });
+      } catch (error) {
+        console.error("API Error updating charts:", error);
+        setApiError("Failed to save your charts. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    }
   };
 
   const handleChartEdit = () => {
     console.log("Editing Chart Details - Resetting planets...");
-    if (chartEditorRef.current) {
-      chartEditorRef.current.resetPlanets();
-    }
+    // setChartResetCounter((prevCounter) => prevCounter + 1);
+    setEditorKey((prevKey) => prevKey + 1);
   };
 
   const handleManualEntryFormSubmit = async (data) => {
@@ -231,8 +331,10 @@ const CompleteProfile = () => {
           case "numberedChart":
             return (
               <ManualChartEditor
-                key={chartEditorRef}
-                title="Rasi"
+                key={editorKey}
+                // resetTrigger={chartResetCounter}
+                title={currentChartType === "rasi" ? "Rasi" : "Navamsa"}
+                // title="Rasi"
                 onConfirm={handleChartConfirm}
                 onEdit={handleChartEdit}
               />
