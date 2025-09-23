@@ -12,14 +12,6 @@ const ManualChartEditor = ({ title, onConfirm, onEdit }) => {
   const [selectedBoxIndex, setSelectedBoxIndex] = useState(null);
   const [placements, setPlacements] = useState({});
 
-  // useEffect(() => {
-  //   if (resetTrigger > 0) {
-  //     console.log("Reset trigger detected! Resetting planets.");
-  //     setPlacements({});
-  //     setSelectedBoxIndex(null);
-  //   }
-  // }, [resetTrigger]);
-
   const handleBoxClick = (clickedIndex) => {
     const isNumbered = lagnas[0] !== null;
 
