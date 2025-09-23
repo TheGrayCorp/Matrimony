@@ -28,7 +28,7 @@ const ManualChartPage = ({ title }) => {
           <TipsOverlay title="Rasi" onHide={() => setShowTips(false)} />
         )}
       </div>
-      <div className="w-full flex flex-col items-center p-6 bg-gray-50">
+      <div className="w-full flex flex-col items-center p-6">
         <div className="w-full flex items-center my-8">
           <div className="w-8"></div>
           <div className="flex-grow text-center">

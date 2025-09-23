@@ -4,25 +4,11 @@ import InputField from "../../../components/ui/Input/InputField";
 import SelectField from "../../../components/ui/Input/SelectField";
 import TextareaField from "../../../components/ui/Input/TextareaField";
 import Button from "../../../components/ui/Button";
-
-const occupationTypeOptions = [
-  { value: "government", label: "Government" },
-  { value: "private", label: "Private" },
-  { value: "selfemployed", label: "Self Employed" },
-  { value: "unemployed", label: "Un Employed" },
-];
-
-const countryOptions = [
-  { value: "lk", label: "Sri Lanka" },
-  { value: "in", label: "India" },
-  { value: "us", label: "United States" },
-];
-
-const maritalStatusOptions = [
-  { value: "unmarried", label: "Unmarried" },
-  { value: "divorced", label: "Divorced" },
-  { value: "widowed", label: "Widowed" },
-];
+import CountrySelect from "../../../components/ui/Input/CountrySelect";
+import {
+  maritalStatusOptions,
+  occupationTypeOptions,
+} from "../../../data/Data";
 
 const CompleteProfileForm = () => {
   const [loading, setLoading] = useState(false);
@@ -36,16 +22,15 @@ const CompleteProfileForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      fullName: "",
-      occupationType: "",
-      dob: "",
-      maritalStatus: "",
-      occupation: "",
-      education: "",
       country: "",
       nationality: "",
-      religion: "",
+      occupation: "",
+      occupationType: "",
       height: "",
+      dob: "",
+      education: "",
+      religion: "",
+      maritalStatus: "",
       bio: "",
     },
   });
@@ -70,13 +55,11 @@ const CompleteProfileForm = () => {
           control={control}
           rules={{ required: "Country is required" }}
           render={({ field }) => (
-            <SelectField
-              label="Country"
+            <CountrySelect
               id="country"
-              options={countryOptions}
+              label="Country"
               error={errors.country}
-              placeholder="Select your country"
-              {...field}
+              field={field}
             />
           )}
         />

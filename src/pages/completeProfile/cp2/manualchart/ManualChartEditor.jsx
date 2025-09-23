@@ -1,4 +1,4 @@
-import { useState, forwardRef, useImperativeHandle } from "react";
+import { useState } from "react";
 import { Lightbulb } from "lucide-react";
 import InteractiveRasiChart from "./InteractiveRasiChart";
 import PlanetSelector from "./PlanetSelector";
@@ -6,21 +6,19 @@ import TipsOverlay from "./TipsOverlay";
 import Button from "../../../../components/ui/Button";
 import { PLANETS } from "../../../../rasiStarData/RasiStarData";
 
-const ManualChartEditor = ({ title, onConfirm, onEdit }, ref) => {
+const ManualChartEditor = ({ title, onConfirm, onEdit }) => {
   const [showTips, setShowTips] = useState(true);
   const [lagnas, setLagnas] = useState(Array(12).fill(null));
   const [selectedBoxIndex, setSelectedBoxIndex] = useState(null);
   const [placements, setPlacements] = useState({});
 
-  const resetPlanets = () => {
-    console.log("Resetting planets only...");
-    setPlacements({});
-    setSelectedBoxIndex(null);
-  };
-
-  useImperativeHandle(ref, () => ({
-    resetPlanets,
-  }));
+  // useEffect(() => {
+  //   if (resetTrigger > 0) {
+  //     console.log("Reset trigger detected! Resetting planets.");
+  //     setPlacements({});
+  //     setSelectedBoxIndex(null);
+  //   }
+  // }, [resetTrigger]);
 
   const handleBoxClick = (clickedIndex) => {
     const isNumbered = lagnas[0] !== null;
@@ -45,7 +43,6 @@ const ManualChartEditor = ({ title, onConfirm, onEdit }, ref) => {
         setSelectedBoxIndex(null);
         return;
       }
-
       if (selectedBoxIndex === clickedIndex) {
         setSelectedBoxIndex(null);
       } else {
@@ -59,9 +56,7 @@ const ManualChartEditor = ({ title, onConfirm, onEdit }, ref) => {
       alert("Please select a box in the Rasi Chart first.");
       return;
     }
-
     const newPlacements = { ...placements };
-
     for (const boxIndex in newPlacements) {
       const filteredPlanets = newPlacements[boxIndex].filter(
         (p) => p.id !== planet.id
@@ -75,7 +70,6 @@ const ManualChartEditor = ({ title, onConfirm, onEdit }, ref) => {
 
     const existingPlanetsInBox = newPlacements[selectedBoxIndex] || [];
     newPlacements[selectedBoxIndex] = [...existingPlanetsInBox, planet];
-
     setPlacements(newPlacements);
   };
 
@@ -84,7 +78,7 @@ const ManualChartEditor = ({ title, onConfirm, onEdit }, ref) => {
   return (
     <div className="relative w-full">
       {showTips && <TipsOverlay onHide={() => setShowTips(false)} />}
-      <div className="w-full flex flex-col items-center p-6 bg-gray-50">
+      <div className="w-full flex flex-col items-center p-6">
         <div className="w-full flex items-center my-8">
           <div className="w-10"></div>
           <div className="flex-grow text-center">

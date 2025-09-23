@@ -51,7 +51,7 @@ const CountrySelect = ({ label, id, error, field }) => {
   }));
 
   return (
-    <div className="mb-4"> 
+    <div className="mb-4">
       {label && (
         <label htmlFor={id} className="block text-lg text-mediumGray mb-3">
           {label}
