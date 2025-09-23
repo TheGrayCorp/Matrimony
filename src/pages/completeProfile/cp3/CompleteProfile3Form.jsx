@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import InputField from "../../../components/ui/Input/InputField";
 import SelectField from "../../../components/ui/Input/SelectField";
@@ -9,16 +8,16 @@ import {
   maritalStatusOptions,
   occupationTypeOptions,
 } from "../../../data/Data";
+import { useUIState } from "../../../context/UIStateContext";
+import Spinner from "../../../components/ui/spinner/spinner";
 
-const CompleteProfileForm = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+const CompleteProfile3Form = ({ onSubmit }) => {
+  const { isLoading, apiError } = useUIState();
 
   const {
     register,
     handleSubmit,
     control,
-    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -27,25 +26,12 @@ const CompleteProfileForm = () => {
       occupation: "",
       occupationType: "",
       height: "",
-      dob: "",
       education: "",
       religion: "",
       maritalStatus: "",
       bio: "",
     },
   });
-
-  const onSubmit = async (data) => {
-    setLoading(true);
-    setError(null);
-    try {
-      console.log("Form Data:", data);
-    } catch (error) {
-      setError(error.message);
-    }
-    setLoading(false);
-    reset();
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="px-6">
@@ -54,6 +40,7 @@ const CompleteProfileForm = () => {
           name="country"
           control={control}
           rules={{ required: "Country is required" }}
+          reset
           render={({ field }) => (
             <CountrySelect
               id="country"
@@ -153,12 +140,16 @@ const CompleteProfileForm = () => {
         />
       </div>
       <div className="flex justify-end mt-4">
-        <Button label="Complete" size="auth" color="purple" type="submit" />
+        <Button
+          label={isLoading ? <Spinner /> : "Complete"}
+          size="auth"
+          color="purple"
+          type="submit"
+        />
       </div>
-      {loading && <p className="text-blue-400">Loading...</p>}
-      {error && <p className="text-red-500">{error}</p>}
+      {apiError && <p className="text-red-500">{apiError}</p>}
     </form>
   );
 };
 
-export default CompleteProfileForm;
+export default CompleteProfile3Form;

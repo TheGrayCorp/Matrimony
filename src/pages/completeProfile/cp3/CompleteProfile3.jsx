@@ -1,7 +1,7 @@
 import ProfileCard from "./ProfileCard";
-import CompleteProfileForm from "./CompleteProfileForm";
+import CompleteProfileForm from "./CompleteProfile3Form";
 
-const Step3Form = () => {
+const CompleteProfile3 = ({ onSubmit }) => {
   return (
     <div className="flex flex-col">
       <div className="flex-grow px-4 lg:px-8 min-w-full">
@@ -10,7 +10,7 @@ const Step3Form = () => {
             <ProfileCard />
           </div>
           <div className="lg:col-span-2">
-            <CompleteProfileForm />
+            <CompleteProfileForm onSubmit={onSubmit} />
           </div>
         </div>
       </div>
@@ -18,4 +18,4 @@ const Step3Form = () => {
   );
 };
 
-export default Step3Form;
+export default CompleteProfile3;
