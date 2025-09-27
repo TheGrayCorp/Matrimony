@@ -1,6 +1,7 @@
 import { Flame, HomeIcon, Search, Heart } from "lucide-react";
 import ListProfileCard from "../assets/images/listProfileCard.svg";
 import ListProfileCard2 from "../assets/images/listProfileCard2.png";
+import { API_ENDPOINTS } from "../services/apiEndPoints/ApiEndpoints";
 
 export const profiles = [
   {
@@ -139,4 +140,13 @@ export const maritalStatusOptions = [
   { value: "unmarried", label: "Unmarried" },
   { value: "divorced", label: "Divorced" },
   { value: "widowed", label: "Widowed" },
+];
+
+export const TABS = [
+  {
+    id: "explore",
+    label: "Explore All",
+    apiPath: API_ENDPOINTS.GET_EXPLORE,
+  },
+  { id: "matches", label: "Matches", apiPath: API_ENDPOINTS.GET_MATCHES },
 ];

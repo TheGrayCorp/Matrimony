@@ -1,14 +1,33 @@
+import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import FooterText from "../ui/footerText/FooterText";
 import Header from "../ui/headerLayout/Header";
 import Profile from "../ui/Profile";
 import BottomNav from "../common/BottomNav";
 import { handleLogout } from "../../lib/logout";
-import { user, navItems } from "../../data/Data";
+import { user, navItems, docId } from "../../data/Data";
+import { useDispatch } from "react-redux";
+import { useUserProfile } from "../../hooks/swr/useUserProfile";
+import {
+  profileLoading,
+  profileReceived,
+  profileError,
+} from "../../store/slices/profileSlice";
 
 const Layout = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
   const shouldShowBottomNav = location.pathname !== "/completeprofile";
+  const { profile, isLoading, isError } = useUserProfile(docId);
+  useEffect(() => {
+    if (isLoading) {
+      dispatch(profileLoading());
+    } else if (isError) {
+      dispatch(profileError("Failed to load user profile."));
+    } else if (profile) {
+      dispatch(profileReceived(profile));
+    }
+  }, [profile, isLoading, isError, dispatch]);
 
   return (
     <div className="min-h-screen flex flex-col">
