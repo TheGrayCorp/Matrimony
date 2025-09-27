@@ -6,16 +6,15 @@ import BioSection from "./BioSection";
 import AstrologySection from "./AstrologySection";
 import FooterText from "../../components/ui/footerText/FooterText";
 import Topbar from "../../components/ui/Topbar";
-import useClientData from "../../hooks/swr/useViewProfile";
 import coverImg from "../../assets/images/viewProfileCoverImage.png";
 import defaultProfileImg from "../../assets/images/viewProfileImage.png";
 import { CircleUserRound } from "lucide-react";
 import LoadingScreen from "../../components/ui/loading/LoadingScreen";
-import { useParams } from "react-router-dom";
+import { docId } from "../../data/Data";
+import { useUserProfile } from "../../hooks/swr/useUserProfile";
 
 const ViewProfile = () => {
-  const { id } = useParams();
-  const { clientData, isLoading, isError } = useClientData(id);
+  const { profile, isLoading, isError } = useUserProfile(docId);
 
   if (isLoading) {
     return <LoadingScreen />;
@@ -23,16 +22,16 @@ const ViewProfile = () => {
   if (isError) {
     return <div className="text-red-500">Something went wrong</div>;
   }
-  if (!clientData) {
+  if (!profile) {
     return <div>No profile data found.</div>;
   }
 
-  const personalDetails = clientData.personalDetails || {};
-  const profileImages = clientData.profileImages || {};
-  const astrologyDetails = clientData.astrology || {};
-  const careerDetails = clientData.careerStudies || {};
-  const contactInfo = clientData.contactInfo?.address || {};
-  const userInfo = clientData.userInfo || {};
+  const personalDetails = profile.personalDetails || {};
+  const profileImages = profile.profileImages || {};
+  const astrologyDetails = profile.astrology || {};
+  const careerDetails = profile.careerStudies || {};
+  const contactInfo = profile.contactInfo?.address || {};
+  const userInfo = profile.userInfo || {};
 
   const topbarProfile = {
     imgSrc: profileImages.profile_pic_url || defaultProfileImg,

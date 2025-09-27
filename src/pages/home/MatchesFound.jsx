@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import MatchesFoundBg from "../../assets/images/MatchesFoundBg.svg";
 
 const MatchesFound = ({ count }) => {
@@ -15,12 +14,6 @@ const MatchesFound = ({ count }) => {
           <p className="text-white font-medium mt-1">Matches Found</p>
         </div>
       </div>
-      <Link
-        to="/matches"
-        className="text-purple font-semibold text-lg mt-4 hover:underline"
-      >
-        View Matches
-      </Link>
     </div>
   );
 };

@@ -12,13 +12,9 @@ const ProfileCard = ({ profile }) => {
   return (
     <div
       onClick={handleClick}
-      className="overflow-hidden cursor-pointer flex flex-col md:flex-row transition-shadow md:m-6"
+      className="overflow-hidden cursor-pointer flex flex-col md:flex-row transition-shadow md:m-6 bg-red-400"
     >
-      <ImageCard
-        src={profile?.profile_pic_url}
-        alt={``}
-        // alt={`${profile?.full_name}'s profile`}
-      />
+      <ImageCard src={profile?.profile_pic_url} alt={``} />
       <DetailsCard
         name={profile?.full_name}
         age={profile?.age}

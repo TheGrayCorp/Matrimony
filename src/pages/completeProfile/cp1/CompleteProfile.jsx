@@ -27,7 +27,7 @@ const CompleteProfile = () => {
   const { setLoading, setApiError } = useUIState();
   const {
     profile,
-    isLoading: isProfileLoading,
+    isLoading,
     isValidating,
     isError,
     mutate,
@@ -211,7 +211,7 @@ const CompleteProfile = () => {
     console.log("Final Payload to be sent:", payload);
 
     try {
-      const response = await updateUserData(payload);
+      const response = await saveUserData(payload);
       console.log("Profile updated successfully!", response.data);
       console.log("User should be navigated to their main profile page now.");
       navigate("/home");
