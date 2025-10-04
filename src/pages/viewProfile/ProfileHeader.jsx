@@ -2,14 +2,11 @@ const ProfileHeader = ({ coverImage, profileImage }) => {
   return (
     <div>
       <div className="relative">
-        {/* Cover Image */}
         <img
           src={coverImage}
           alt="Cover"
           className="w-full h-48 object-cover rounded-md"
         />
-
-        {/* Profile Image */}
         <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2">
           <img
             src={profileImage}
@@ -25,8 +22,6 @@ const ProfileHeader = ({ coverImage, profileImage }) => {
           />
         </div>
       </div>
-
-      {/* Pagination dots */}
       <div className="flex justify-center mt-20 gap-2">
         <span className="inline-block w-2 h-2 rounded-full bg-yellow-400"></span>
         <span className="inline-block w-2 h-2 rounded-full bg-gray-300"></span>

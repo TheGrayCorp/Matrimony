@@ -17,7 +17,7 @@ const Step2Form = ({ onSubmit }) => {
       <p className="text-gray-500 text-sm mb-8 max-w-md mx-auto text-center">
         You can generate astrology chart with required birth details or you can
         enter manually
-      </p>400
+      </p>
       <SelectionCard
         label="Generate the chart"
         icon={Sparkles}
@@ -31,7 +31,7 @@ const Step2Form = ({ onSubmit }) => {
         isSelected={selection === "manual"}
         onClick={() => setSelection("manual")}
       />
-      <div className="mt-10">400
+      <div className="mt-10">
         <Button
           label="Next"
           size="auth"

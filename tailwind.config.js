@@ -8,7 +8,7 @@ export default {
         gold: "#D2AC5A",
         lightGold: "#D7B367",
         black1: "#464646",
-        darkGray: "#7E7E7E",
+        // darkGray: "#7E7E7E",
         lightGray: "#999999",
         mediumGray: "#7E7E7E",
         middleGray: "#666666",
@@ -19,6 +19,7 @@ export default {
         text1: "#464646",
         purple: "#7D67EE",
         lightPurple: "#E2E6FE",
+        veryLightGray: "#F6F6F6"
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
