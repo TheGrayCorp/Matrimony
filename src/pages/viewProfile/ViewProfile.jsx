@@ -4,17 +4,17 @@ import ProfileFooter from "./ProfileFooter";
 import AboutSection from "./AboutSection";
 import BioSection from "./BioSection";
 import AstrologySection from "./AstrologySection";
-import FooterText from "../../components/ui/footerText/FooterText";
-import Topbar from "../../components/ui/Topbar";
 import coverImg from "../../assets/images/viewProfileCoverImage.png";
 import defaultProfileImg from "../../assets/images/viewProfileImage.png";
 import { CircleUserRound } from "lucide-react";
 import LoadingScreen from "../../components/ui/loading/LoadingScreen";
-import { docId } from "../../data/Data";
 import { useUserProfile } from "../../hooks/swr/useUserProfile";
+import { useParams } from "react-router-dom";
+import MoreAboutSection from "./MoreAboutSection";
 
 const ViewProfile = () => {
-  const { profile, isLoading, isError } = useUserProfile(docId);
+  const { id } = useParams();
+  const { profile, isLoading, isError } = useUserProfile(id);
 
   if (isLoading) {
     return <LoadingScreen />;
@@ -31,13 +31,6 @@ const ViewProfile = () => {
   const astrologyDetails = profile.astrology || {};
   const careerDetails = profile.careerStudies || {};
   const contactInfo = profile.contactInfo?.address || {};
-  const userInfo = profile.userInfo || {};
-
-  const topbarProfile = {
-    imgSrc: profileImages.profile_pic_url || defaultProfileImg,
-    userName: personalDetails.full_name || "User",
-    userRole: userInfo.user_type || "Role",
-  };
 
   const profileDetailsData = {
     name: personalDetails.full_name || "- -",
@@ -71,14 +64,9 @@ const ViewProfile = () => {
     navamsa_chart: astrologyDetails.navamsa_chart || null,
   };
 
-  const handleLogout = () => {
-    console.log("User logged out!");
-  };
-
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex-grow">
-        <Topbar profile={topbarProfile} onLogout={handleLogout} />
         <div className="grid grid-cols-1 md:grid-cols-12 mt-6 px-6 md:px-12 lg:px-28">
           <div className="md:col-span-3">
             <div className="mx-6 border border-gray-200 rounded-md">
@@ -94,17 +82,20 @@ const ViewProfile = () => {
           </div>
           <div className="md:col-span-9">
             <div className="p-4">
-              <AboutSection about={aboutData} />
+              <div className="flex justify-between items-center">
+                <AboutSection about={aboutData} />
+                <p>dshfsdifodag</p>
+              </div>
               <div className="mt-20 mb-16">
                 <BioSection bio={bioData} icon={CircleUserRound} />
               </div>
               <AstrologySection astrology={astrologyData} />
+              <div className="mt-10">
+                <MoreAboutSection />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="py-4">
-        <FooterText align="center" />
       </div>
     </div>
   );
