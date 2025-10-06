@@ -4,4 +4,5 @@ export const API_ENDPOINTS = {
   GET_CLIENT_DATA: "/getClientDataByDocId",
   GET_EXPLORE: "/clientFilter",
   GET_MATCHES: "/getCompatibleClientsDatList",
+  GENERATE_CHARTS: "/getChartsAndBirthDetails",
 };

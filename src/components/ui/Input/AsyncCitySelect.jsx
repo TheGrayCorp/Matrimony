@@ -15,6 +15,8 @@ const allCities = (() => {
     return {
       value: label,
       label: label,
+      latitude: city.latitude,
+      longitude: city.longitude,
     };
   });
 })();
