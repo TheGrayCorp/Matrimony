@@ -18,11 +18,7 @@ const GenerateChartForm = ({ onSubmit }) => {
   });
 
   const handleFormSubmit = (data) => {
-    const formattedData = {
-      ...data,
-      placeOfBirth: data.placeOfBirth.value,
-    };
-    onSubmit(formattedData);
+    onSubmit(data);
   };
 
   return (
