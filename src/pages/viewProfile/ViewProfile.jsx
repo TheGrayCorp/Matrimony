@@ -11,10 +11,17 @@ import LoadingScreen from "../../components/ui/loading/LoadingScreen";
 import { useUserProfile } from "../../hooks/swr/useUserProfile";
 import { useParams } from "react-router-dom";
 import MoreAboutSection from "./MoreAboutSection";
+import { useSelector } from "react-redux";
+import { selectUserProfile } from "../../store/slices/profileSlice";
 
 const ViewProfile = () => {
-  const { id } = useParams();
-  const { profile, isLoading, isError } = useUserProfile(id);
+  const { id: viewedProfileId } = useParams();
+  const { data: loggedInUserProfile } = useSelector(selectUserProfile);
+  const loggedInUserDocId = loggedInUserProfile?.docId;
+  const { profile, isLoading, isError } = useUserProfile(viewedProfileId);
+  const isMyProfile =
+    loggedInUserDocId && loggedInUserDocId === viewedProfileId;
+  const footerVariant = isMyProfile ? "myProfile" : "otherProfile";
 
   if (isLoading) {
     return <LoadingScreen />;
@@ -31,6 +38,7 @@ const ViewProfile = () => {
   const astrologyDetails = profile.astrology || {};
   const careerDetails = profile.careerStudies || {};
   const contactInfo = profile.contactInfo?.address || {};
+  const lifestyleDetails = profile.lifestyle || {};
 
   const profileDetailsData = {
     name: personalDetails.full_name || "- -",
@@ -77,21 +85,24 @@ const ViewProfile = () => {
                 }
               />
               <ProfileDetails {...profileDetailsData} />
-              <ProfileFooter />
+              <ProfileFooter variant={footerVariant} />
             </div>
           </div>
           <div className="md:col-span-9">
             <div className="p-4">
               <div className="flex justify-between items-center">
                 <AboutSection about={aboutData} />
-                <p>dshfsdifodag</p>
+                {/* <p>dshfsdifodag</p> */}
               </div>
               <div className="mt-20 mb-16">
                 <BioSection bio={bioData} icon={CircleUserRound} />
               </div>
               <AstrologySection astrology={astrologyData} />
               <div className="mt-10">
-                <MoreAboutSection />
+                <MoreAboutSection
+                  name={personalDetails.full_name}
+                  lifestyle={lifestyleDetails}
+                />
               </div>
             </div>
           </div>
