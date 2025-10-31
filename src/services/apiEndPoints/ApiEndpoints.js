@@ -5,5 +5,6 @@ export const API_ENDPOINTS = {
   GET_EXPLORE: "clientFilter",
   GET_MATCHES: "getCompatibleClientsDatList",
   GENERATE_CHARTS: "getChartsAndBirthDetails",
-  GET_CLIENT_ACTIONS: "clientAction",
+  CLIENT_ACTIONS: "clientAction",
+  CHECK_NOTIFICATION_STATUS: "checkNotificationStatus",
 };

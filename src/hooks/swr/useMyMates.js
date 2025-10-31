@@ -8,7 +8,7 @@ const PAGE_SIZE = 10;
 
 export const useMyMates = (activeTab, clientDocId) => {
   const actionsKey = clientDocId
-    ? `${API_ENDPOINTS.GET_CLIENT_ACTIONS}/${clientDocId}`
+    ? `${API_ENDPOINTS.CLIENT_ACTIONS}/${clientDocId}`
     : null;
   const {
     data: actionsData,
