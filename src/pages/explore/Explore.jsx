@@ -3,25 +3,21 @@ import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUserProfile } from "../../store/slices/profileSlice";
 import { useExploreProfiles } from "../../hooks/swr/useExploreProfiles";
-import { useMatches } from "../../hooks/swr/useMatches";
 import LoadingScreen from "../../components/ui/loading/LoadingScreen";
 import Tabs from "../../components/ui/Tabs/Tabs";
 import ProfileGrid from "../../components/profile/ProfileGrid";
 import { docId, TABS } from "../../data/Data";
+import { selectMatchesData } from "../../store/slices/matchesSlice";
 
 const Explore = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const bottomRef = useRef(null);
   const activeTab = searchParams.get("tab") || "explore";
-  const { data: userProfile } = useSelector(selectUserProfile);
+  const { profileData: userProfile } = useSelector(selectUserProfile);
+  const { matchesData } = useSelector(selectMatchesData);
   const currentUserDocId = userProfile?.docId || docId;
 
   const filters = {
-    clientRasi: userProfile?.astrology?.rasi || "GEMINI",
-    clientNatstram: userProfile?.astrology?.natchathiram || "PUNARVASU",
-    clientGender: userProfile?.personalDetails?.gender?.toUpperCase() || "MALE",
-  };
-  const matchParams = {
     clientRasi: userProfile?.astrology?.rasi || "GEMINI",
     clientNatstram: userProfile?.astrology?.natchathiram || "PUNARVASU",
     clientGender: userProfile?.personalDetails?.gender?.toUpperCase() || "MALE",
@@ -32,11 +28,17 @@ const Explore = () => {
     filters,
     activeTab === "explore"
   );
-  const matchesResult = useMatches(
-    currentUserDocId,
-    matchParams,
-    activeTab === "matches"
-  );
+
+  const matchesSource = {
+    profiles: matchesData,
+    isLoading: false,
+    isError: false,
+    isEmpty: !matchesData || matchesData.length === 0,
+    isLoadingMore: false,
+    isReachingEnd: true,
+    setSize: () => {},
+    mutate: () => {},
+  };
 
   const {
     profiles,
@@ -46,12 +48,14 @@ const Explore = () => {
     isEmpty,
     isReachingEnd,
     setSize,
-    mutate,
-  } = activeTab === "explore" ? exploreResult : matchesResult;
+    // mutate,
+  } = activeTab === "explore" ? exploreResult : matchesSource;
 
-  useEffect(() => {
-    mutate();
-  }, [activeTab, mutate]);
+  // useEffect(() => {
+  //   if (activeTab === "explore") {
+  //     mutate();
+  //   }
+  // }, [activeTab, mutate]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

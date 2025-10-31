@@ -6,6 +6,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 const ProfileCarousel = ({ profiles }) => {
+  const minimumSlidesForLoop = 4;
+  const enableLoop = profiles.length >= minimumSlidesForLoop;
+
   return (
     <div className="relative px-6 md:px-24 lg:px-40">
       <Swiper
@@ -27,7 +30,7 @@ const ProfileCarousel = ({ profiles }) => {
           nextEl: ".swiper-button-next-custom",
           prevEl: ".swiper-button-prev-custom",
         }}
-        loop={true}
+        loop={enableLoop}
       >
         {profiles.map((profile) => (
           <SwiperSlide key={profile.docId}>

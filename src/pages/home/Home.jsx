@@ -1,13 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MatchesFound from "./MatchesFound";
 import ProfileCarousel from "./ProfileCarousel";
 import { useMatches } from "../../hooks/swr/useMatches";
 import { selectUserProfile } from "../../store/slices/profileSlice";
 import Spinner from "../../components/ui/spinner/spinner";
+import { setMatchesData } from "../../store/slices/matchesSlice";
+import { useEffect } from "react";
 
 const Home = () => {
-  const { data: userProfile, status: profileStatus } =
-    useSelector(selectUserProfile);
+  const dispatch = useDispatch();
+  const { profileData: userProfile } = useSelector(selectUserProfile);
   const currentUserDocId = userProfile?.docId;
   const matchParams = {
     clientRasi: userProfile?.astrology?.rasi,
@@ -20,8 +22,14 @@ const Home = () => {
     !!currentUserDocId
   );
 
+  useEffect(() => {
+    if (profiles && profiles.length > 0) {
+      dispatch(setMatchesData(profiles));
+    }
+  }, [profiles, dispatch]);
+
   const renderCarouselContent = () => {
-    if (profileStatus === "loading" || profileStatus === "idle" || isLoading) {
+    if (isLoading) {
       return (
         <div className="h-64 flex items-center justify-center">
           <Spinner />
@@ -47,8 +55,8 @@ const Home = () => {
 
   return (
     <div>
-      <MatchesFound count={totalCount || 0} />
-      <div className="flex justify-center text-purple font-medium text-lg">
+      <MatchesFound count={isLoading ? 0 : totalCount || 0} />
+      <div className="flex justify-center text-purple font-medium text-xl">
         View Matches
       </div>
       {renderCarouselContent()}

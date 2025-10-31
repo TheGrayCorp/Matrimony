@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  data: null,
+  profileData: null,
   status: "idle",
-  error: null,
+  error: [],
 };
 
 const profileSlice = createSlice({
@@ -15,7 +15,7 @@ const profileSlice = createSlice({
     },
     profileReceived: (state, action) => {
       state.status = "succeeded";
-      state.data = action.payload;
+      state.profileData = action.payload;
     },
     profileError: (state, action) => {
       state.status = "failed";
