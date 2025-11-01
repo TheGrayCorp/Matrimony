@@ -1,6 +1,6 @@
-# MyMate-MobileApp
-My Mate Mobile Application
+# MyMate-Web
+My Mate Web Application
 
-Flutter
+React
 Spring boot
 Firebase
